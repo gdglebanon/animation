@@ -440,3 +440,73 @@ h1 {
 }
 
 /* Small fixed delay so it happens after page turn starts */
+
+/* Closing Section */
+.closing-section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+    width: 80%;
+    max-width: 500px;
+}
+
+.closing-section.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.closing-section h2 {
+    font-family: var(--marker-font);
+    font-size: 2.5rem;
+    color: var(--google-blue);
+    /* Blue Color */
+    margin-bottom: 10px;
+}
+
+.closing-section p {
+    font-family: var(--hand-font);
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.icons-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    /* Space between icons */
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.handles-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    font-family: var(--body-font);
+    font-size: 1rem;
+    color: #555;
+    font-weight: normal;
+    /* Not bold */
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    transition: transform 0.2s;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}

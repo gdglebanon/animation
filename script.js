@@ -406,7 +406,11 @@ function animate(timestamp) {
     if (progress < 1) {
         requestAnimationFrame(animate);
     } else {
-        // Loop?
+        // Animation Complete
+        setTimeout(() => {
+            const closing = document.getElementById('closing-section');
+            if (closing) closing.classList.add('visible');
+        }, 500);
     }
 }
 
