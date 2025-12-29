@@ -1,3 +1,10 @@
+const COLORS = {
+    BLUE: "#4285F4",
+    RED: "#EA4335",
+    YELLOW: "#FBBC05",
+    GREEN: "#34A853"
+};
+
 const eventsData = [
     {
         title: "Google I/O Extended",
@@ -9,9 +16,9 @@ const eventsData = [
             "logo.svg"
         ],
         notes: [
-            { text: "100+ Devs", color: "#4285F4", rotate: -5 },
-            { text: "Live Demo", color: "#EA4335", rotate: 5 },
-            { text: "", color: "#FBBC05", rotate: 2 } // Empty green note
+            { text: "100+ Devs", color: COLORS.BLUE, rotate: -5 },
+            { text: "Live Demo", color: COLORS.RED, rotate: 5 },
+            { text: "", color: COLORS.YELLOW, rotate: 2 } // Empty note
         ],
         description: "Join us for an immersive recap of the biggest Google announcements. Deep dive into the latest in AI, Mobile, and Cloud technologies."
     },
@@ -24,9 +31,9 @@ const eventsData = [
             // "path/to/cloud2.jpg"
         ],
         notes: [
-            { text: "100+ Devs", color: "#4285F4", rotate: -5 },
-            { text: "Live Demo", color: "#EA4335", rotate: 5 },
-            { text: "", color: "#34A853", rotate: 2 } // Empty green note
+            { text: "100+ Devs", color: COLORS.BLUE, rotate: -5 },
+            { text: "Live Demo", color: COLORS.RED, rotate: 5 },
+            { text: "", color: COLORS.GREEN, rotate: 2 } // Empty green note
         ],
         description: "Explore the power of Google Cloud. Hands-on labs, expert sessions, and networking with cloud architects."
     },
@@ -36,9 +43,9 @@ const eventsData = [
         photos: 3,
         images: [],
         notes: [
-            { text: "Inspiring!", color: "#EA4335", rotate: -3 },
-            { text: "Power", color: "#4285F4", rotate: 4 },
-            { text: "Community", color: "#FBBC05", rotate: -2 }
+            { text: "Inspiring!", color: COLORS.RED, rotate: -3 },
+            { text: "Power", color: COLORS.BLUE, rotate: 4 },
+            { text: "Community", color: COLORS.YELLOW, rotate: -2 }
         ],
         description: "Celebrating diversity in tech. Inspiring talks, leadership workshops, and community building for everyone."
     },
@@ -48,10 +55,10 @@ const eventsData = [
         photos: 4,
         images: [],
         notes: [
-            { text: "Kotlin <3", color: "#34A853", rotate: 2 },
-            { text: "Jetpack", color: "#4285F4", rotate: -4 },
-            { text: "Mobile", color: "#EA4335", rotate: 3 },
-            { text: "Compose", color: "#FBBC05", rotate: 1 }
+            { text: "Kotlin <3", color: COLORS.GREEN, rotate: 2 },
+            { text: "Jetpack", color: COLORS.BLUE, rotate: -4 },
+            { text: "Mobile", color: COLORS.RED, rotate: 3 },
+            { text: "Compose", color: COLORS.YELLOW, rotate: 1 }
         ],
         description: "Master Modern Android Development. From Jetpack Compose to Kotlin Coroutines, level up your mobile skills."
     },
@@ -61,9 +68,9 @@ const eventsData = [
         photos: 3,
         images: [],
         notes: [
-            { text: "TensorFlow", color: "#FBBC05", rotate: -3 },
-            { text: "Keras", color: "#EA4335", rotate: 3 },
-            { text: "Model It", color: "#4285F4", rotate: -1 }
+            { text: "TensorFlow", color: COLORS.YELLOW, rotate: -3 },
+            { text: "Keras", color: COLORS.RED, rotate: 3 },
+            { text: "Model It", color: COLORS.BLUE, rotate: -1 }
         ],
         description: "A comprehensive bootcamp covering TensorFlow, Keras, and generative AI models. Build your own models from scratch."
     },
@@ -73,10 +80,10 @@ const eventsData = [
         photos: 4,
         images: [],
         notes: [
-            { text: "PWA", color: "#4285F4", rotate: 2 },
-            { text: "Chrome", color: "#34A853", rotate: -2 },
-            { text: "Speed", color: "#EA4335", rotate: 4 },
-            { text: "WebAssembly", color: "#FBBC05", rotate: -5 }
+            { text: "PWA", color: COLORS.BLUE, rotate: 2 },
+            { text: "Chrome", color: COLORS.GREEN, rotate: -2 },
+            { text: "Speed", color: COLORS.RED, rotate: 4 },
+            { text: "WebAssembly", color: COLORS.YELLOW, rotate: -5 }
         ],
         description: "The future of the web is here. Learn about PWA, WebAssembly, and the latest Chrome APIs."
     },
@@ -86,9 +93,9 @@ const eventsData = [
         photos: 3,
         images: [],
         notes: [
-            { text: "Kickoff", color: "#EA4335", rotate: -4 },
-            { text: "Swag!", color: "#4285F4", rotate: 3 },
-            { text: "Big Plans", color: "#34A853", rotate: -2 }
+            { text: "Kickoff", color: COLORS.RED, rotate: -4 },
+            { text: "Swag!", color: COLORS.BLUE, rotate: 3 },
+            { text: "Big Plans", color: COLORS.GREEN, rotate: -2 }
         ],
         description: "Kicking off our flagship event season. Meet the team, grab swag, and prepare for the biggest developer festival."
     },
@@ -98,10 +105,10 @@ const eventsData = [
         photos: 4,
         images: [],
         notes: [
-            { text: "48 Hours", color: "#FBBC05", rotate: 3 },
-            { text: "Coding", color: "#EA4335", rotate: -3 },
-            { text: "Impact", color: "#4285F4", rotate: 2 },
-            { text: "Pizza!", color: "#34A853", rotate: 5 }
+            { text: "48 Hours", color: COLORS.YELLOW, rotate: 3 },
+            { text: "Coding", color: COLORS.RED, rotate: -3 },
+            { text: "Impact", color: COLORS.BLUE, rotate: 2 },
+            { text: "Pizza!", color: COLORS.GREEN, rotate: 5 }
         ],
         description: "48 hours of coding to solve real-world problems. Great prizes, food, and mentorship included."
     },
@@ -111,9 +118,9 @@ const eventsData = [
         photos: 3,
         images: [],
         notes: [
-            { text: "Hired!", color: "#34A853", rotate: -2 },
-            { text: "Review", color: "#FBBC05", rotate: 4 },
-            { text: "Jobs", color: "#4285F4", rotate: -3 }
+            { text: "Hired!", color: COLORS.GREEN, rotate: -2 },
+            { text: "Review", color: COLORS.YELLOW, rotate: 4 },
+            { text: "Jobs", color: COLORS.BLUE, rotate: -3 }
         ],
         description: "Connect with top tech companies in Lebanon. Portfolio reviews, mock interviews, and job opportunities."
     },
@@ -123,10 +130,10 @@ const eventsData = [
         photos: 4,
         images: [],
         notes: [
-            { text: "Trivia", color: "#EA4335", rotate: 3 },
-            { text: "Awards", color: "#4285F4", rotate: -3 },
-            { text: "2026", color: "#FBBC05", rotate: 2 },
-            { text: "Fun", color: "#34A853", rotate: -4 }
+            { text: "Trivia", color: COLORS.RED, rotate: 3 },
+            { text: "Awards", color: COLORS.BLUE, rotate: -3 },
+            { text: "2026", color: COLORS.YELLOW, rotate: 2 },
+            { text: "Fun", color: COLORS.GREEN, rotate: -4 }
         ],
         description: "Wrap up an amazing year with the community. Awards, trivia night, and looking forward to 2026."
     },
@@ -200,9 +207,9 @@ eventsData.forEach((event, index) => {
 
     // Default Notes if none provided
     const defaultNotes = [
-        { text: "Great Event!", color: '#4285F4', rotate: -2 },
-        { text: "Memories", color: '#EA4335', rotate: 1 },
-        { text: "2025", color: '#FBBC05', rotate: -1 }
+        { text: "Great Event!", color: COLORS.BLUE, rotate: -2 },
+        { text: "Memories", color: COLORS.RED, rotate: 1 },
+        { text: "2025", color: COLORS.YELLOW, rotate: -1 }
     ];
 
     // Use custom notes from event data or defaults
@@ -212,8 +219,8 @@ eventsData.forEach((event, index) => {
         const note = document.createElement('div');
         note.classList.add('sticky-note');
         // Allow simple string color or full object style
-        note.style.backgroundColor = noteData.color || '#FBBC05';
-        note.style.color = noteData.textColor || (noteData.color === '#FBBC05' ? '#333' : 'white');
+        note.style.backgroundColor = noteData.color || COLORS.YELLOW;
+        note.style.color = noteData.textColor || (noteData.color === COLORS.YELLOW ? '#333' : 'white');
         note.innerText = noteData.text || "";
 
         // Random positioning/Rotation if not specified
@@ -410,7 +417,7 @@ function animate(timestamp) {
         setTimeout(() => {
             const closing = document.getElementById('closing-section');
             if (closing) closing.classList.add('visible');
-        }, 500);
+        }, 1);  // Appearance delay reduced for snappier feel
     }
 }
 

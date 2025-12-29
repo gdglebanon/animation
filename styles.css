@@ -455,7 +455,8 @@ h1 {
     z-index: 1000;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 1s ease;
+    transition: opacity 0.5s ease;
+    /* Faster fade-in */
     width: 80%;
     max-width: 500px;
 }
