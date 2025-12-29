@@ -1,0 +1,383 @@
+:root {
+    --google-blue: #4285F4;
+    --google-red: #EA4335;
+    --google-yellow: #FBBC05;
+    --google-green: #34A853;
+    --paper-bg: #fdfbf7;
+    --text-color: #2d2d2d;
+    --hand-font: 'Google Sans', sans-serif;
+    --marker-font: 'Google Sans', sans-serif;
+    --body-font: 'Google Sans', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--body-font);
+    background-color: var(--paper-bg);
+    /* Simple CSS pattern for paper texture effect */
+    background-image: linear-gradient(#e8e6e1 1px, transparent 1px), linear-gradient(90deg, #e8e6e1 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: var(--text-color);
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stage {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    perspective: 1200px;
+    /* Stronger perspective for book feel */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    text-align: center;
+    padding: 20px;
+    z-index: 50;
+    position: absolute;
+    top: 20px;
+    background: white;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    transform: rotate(-2deg);
+    border: 1px solid #ddd;
+}
+
+.logo {
+    height: 30px;
+}
+
+h1 {
+    font-family: var(--marker-font);
+    font-size: 2rem;
+    margin: 5px 0;
+    color: var(--text-color);
+}
+
+.scroll-container {
+    width: 90%;
+    max-width: 700px;
+    /* Wider for collage */
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    padding-top: 150px;
+}
+
+/* Base Card Style (The Page) */
+.event-card {
+    background: #fff;
+    /* Textured paper feel */
+    background-image: radial-gradient(#f0f0f0 10%, transparent 10%);
+    background-size: 10px 10px;
+
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    padding: 40px;
+    /* More padding like a real page */
+    transform-origin: left center;
+    /* Hinge on the left now */
+    position: absolute;
+    width: 100%;
+    height: 550px;
+    /* Large page */
+    box-sizing: border-box;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    border: 1px solid #eaeaea;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+
+/* Shadow that darkens as page curls */
+.card-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 100;
+    transition: opacity 0.1s linear;
+}
+
+/* Typography & Layout */
+.text-section {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.event-card h2 {
+    font-family: var(--marker-font);
+    color: var(--text-color);
+    font-size: 2rem;
+    /* Reduced from 2.5rem */
+    font-weight: 700;
+    margin: 0;
+    /* transform: rotate(-1deg); Removed rotation for cleaner look? User just said font. Let's keep rotation for scrapbook feel but clean up the font. */
+    transform: rotate(-1deg);
+    display: inline-block;
+    border-bottom: 3px solid var(--google-yellow);
+    padding-bottom: 5px;
+}
+
+.event-date {
+    font-family: var(--hand-font);
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: var(--google-blue);
+    display: block;
+    margin-top: 10px;
+}
+
+.event-description {
+    font-family: var(--hand-font);
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: #444;
+    margin-top: 15px;
+    background: #ffffd0;
+    /* Sticky note color? */
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transform: rotate(1deg);
+    width: 80%;
+}
+
+/* Collage Grid */
+.event-grid {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+/* POLAROID STYLE */
+.polaroid {
+    position: absolute;
+    width: 180px;
+    transition: transform 0.3s ease;
+    z-index: 10;
+    /* Wrapper only positioning, no visual styles */
+}
+
+.polaroid-content {
+    background: white;
+    padding: 10px 10px 40px 10px;
+    /* Extra bottom padding */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ccc;
+    opacity: 0;
+    /* Hidden initially, revealed by animation */
+    transform-origin: center;
+}
+
+.polaroid-img {
+    /* ... */
+
+    /* ... */
+
+    /* Animate the WHOLE polaroid content (Frame + Image) */
+    .event-card.active .polaroid-content {
+        animation: imagePop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    width: 100%;
+    height: 140px;
+    background-color: #eee;
+    object-fit: cover;
+    border: 1px solid #eee;
+    /* Opacity handled by parent content now */
+}
+
+/* ... */
+
+/* "Sticker Slap" Animation - Scale Only, No Opacity Fading */
+@keyframes imagePop {
+    0% {
+        transform: scale(3) rotate(15deg) translateZ(200px);
+        /* Start BIG and CLOSER */
+        opacity: 0;
+        /* Start invisible */
+    }
+
+    10% {
+        opacity: 1;
+        /* Fade in VERY fast during the slap down */
+    }
+
+    40% {
+        transform: scale(0.9) rotate(-5deg) translateZ(0);
+        /* Slam down to surface */
+        opacity: 1;
+    }
+
+    70% {
+        transform: scale(1.05) rotate(2deg) translateZ(10px);
+        /* Bounce slightly up */
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg) translateZ(0);
+        /* Settle */
+        opacity: 1;
+    }
+}
+
+.polaroid-caption {
+    font-family: var(--hand-font);
+    text-align: center;
+    margin-top: 10px;
+    color: #555;
+    font-size: 1rem;
+}
+
+/* Washi Tape CSS (applied via JS classes or helper) */
+.tape {
+    position: absolute;
+    height: 30px;
+    width: 100px;
+    background-color: rgba(234, 67, 53, 0.6);
+    /* Red tape default */
+    top: -15px;
+    left: 40%;
+    transform: rotate(-2deg);
+    opacity: 0.8;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.progress-bar-container {
+    position: absolute;
+    bottom: 20px;
+    width: 80%;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Plane & Atmosphere */
+.paper-plane {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    z-index: 200;
+    filter: drop-shadow(5px 10px 4px rgba(0, 0, 0, 0.2));
+    transition: transform 0.1s linear;
+}
+
+.paper-plane img {
+    width: 100%;
+    height: 100%;
+}
+
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+    filter: blur(10px);
+    z-index: 10;
+}
+
+/* Mobile Responsive Optimization */
+@media (max-width: 600px) {
+    .header {
+        width: 90%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .event-card {
+        height: 500px;
+        /* Slightly shorter */
+        padding: 20px;
+    }
+
+    .event-card h2 {
+        font-size: 1.5rem;
+        /* Smaller title */
+    }
+
+    .text-section {
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    .event-description {
+        font-size: 1rem;
+        width: 95%;
+    }
+
+    /* Adjust Polaroids size for mobile */
+    .polaroid {
+        width: 120px;
+        /* Padding removed here, handled in content */
+    }
+
+    .polaroid-content {
+        padding: 6px 6px 20px 6px;
+    }
+
+    .polaroid-img {
+        height: 90px;
+    }
+
+    .polaroid-caption {
+        font-size: 0.8rem;
+    }
+
+    /* Paper plane smaller */
+    .paper-plane {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Animations for Active State */
+.event-card.active h2 {
+    animation: titlePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Animate the WHOLE polaroid content (Frame + Image) */
+.event-card.active .polaroid-content {
+    animation: imagePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes titlePop {
+    0% {
+        transform: scale(0.9) rotate(-1deg);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1) rotate(-1deg);
+        opacity: 1;
+    }
+}
+
+/* imagePop defined above */
+
+/* Staggering - No delay */
+.event-card.active .polaroid-content {
+    animation-delay: 0s;
+}
+
+/* Small fixed delay so it happens after page turn starts */
