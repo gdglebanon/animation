@@ -3,60 +3,131 @@ const eventsData = [
         title: "Google I/O Extended",
         date: "May 15, 2025",
         photos: 3,
+        images: [
+            "logo.svg",
+            "logo.svg",
+            "logo.svg"
+        ],
+        notes: [
+            { text: "100+ Devs", color: "#4285F4", rotate: -5 },
+            { text: "Live Demo", color: "#EA4335", rotate: 5 },
+            { text: "", color: "#FBBC05", rotate: 2 } // Empty green note
+        ],
         description: "Join us for an immersive recap of the biggest Google announcements. Deep dive into the latest in AI, Mobile, and Cloud technologies."
     },
     {
         title: "Cloud Summit 2025",
         date: "June 02, 2025",
         photos: 4,
+        images: [
+            // "path/to/cloud1.jpg",
+            // "path/to/cloud2.jpg"
+        ],
+        notes: [
+            { text: "100+ Devs", color: "#4285F4", rotate: -5 },
+            { text: "Live Demo", color: "#EA4335", rotate: 5 },
+            { text: "", color: "#34A853", rotate: 2 } // Empty green note
+        ],
         description: "Explore the power of Google Cloud. Hands-on labs, expert sessions, and networking with cloud architects."
     },
     {
         title: "Women Techmakers",
         date: "June 20, 2025",
         photos: 3,
+        images: [],
+        notes: [
+            { text: "Inspiring!", color: "#EA4335", rotate: -3 },
+            { text: "Power", color: "#4285F4", rotate: 4 },
+            { text: "Community", color: "#FBBC05", rotate: -2 }
+        ],
         description: "Celebrating diversity in tech. Inspiring talks, leadership workshops, and community building for everyone."
     },
     {
         title: "Android Workshop",
         date: "July 10, 2025",
         photos: 4,
+        images: [],
+        notes: [
+            { text: "Kotlin <3", color: "#34A853", rotate: 2 },
+            { text: "Jetpack", color: "#4285F4", rotate: -4 },
+            { text: "Mobile", color: "#EA4335", rotate: 3 },
+            { text: "Compose", color: "#FBBC05", rotate: 1 }
+        ],
         description: "Master Modern Android Development. From Jetpack Compose to Kotlin Coroutines, level up your mobile skills."
     },
     {
         title: "AI/ML Bootcamp",
         date: "August 05, 2025",
         photos: 3,
+        images: [],
+        notes: [
+            { text: "TensorFlow", color: "#FBBC05", rotate: -3 },
+            { text: "Keras", color: "#EA4335", rotate: 3 },
+            { text: "Model It", color: "#4285F4", rotate: -1 }
+        ],
         description: "A comprehensive bootcamp covering TensorFlow, Keras, and generative AI models. Build your own models from scratch."
     },
     {
         title: "Web Technologies Day",
         date: "September 12, 2025",
         photos: 4,
+        images: [],
+        notes: [
+            { text: "PWA", color: "#4285F4", rotate: 2 },
+            { text: "Chrome", color: "#34A853", rotate: -2 },
+            { text: "Speed", color: "#EA4335", rotate: 4 },
+            { text: "WebAssembly", color: "#FBBC05", rotate: -5 }
+        ],
         description: "The future of the web is here. Learn about PWA, WebAssembly, and the latest Chrome APIs."
     },
     {
         title: "DevFest 2025 Launch",
         date: "October 01, 2025",
         photos: 3,
+        images: [],
+        notes: [
+            { text: "Kickoff", color: "#EA4335", rotate: -4 },
+            { text: "Swag!", color: "#4285F4", rotate: 3 },
+            { text: "Big Plans", color: "#34A853", rotate: -2 }
+        ],
         description: "Kicking off our flagship event season. Meet the team, grab swag, and prepare for the biggest developer festival."
     },
     {
         title: "Hackathon: Build for Good",
         date: "October 25, 2025",
         photos: 4,
+        images: [],
+        notes: [
+            { text: "48 Hours", color: "#FBBC05", rotate: 3 },
+            { text: "Coding", color: "#EA4335", rotate: -3 },
+            { text: "Impact", color: "#4285F4", rotate: 2 },
+            { text: "Pizza!", color: "#34A853", rotate: 5 }
+        ],
         description: "48 hours of coding to solve real-world problems. Great prizes, food, and mentorship included."
     },
     {
         title: "Career Fair & Networking",
         date: "November 15, 2025",
         photos: 3,
+        images: [],
+        notes: [
+            { text: "Hired!", color: "#34A853", rotate: -2 },
+            { text: "Review", color: "#FBBC05", rotate: 4 },
+            { text: "Jobs", color: "#4285F4", rotate: -3 }
+        ],
         description: "Connect with top tech companies in Lebanon. Portfolio reviews, mock interviews, and job opportunities."
     },
     {
         title: "End of Year Celebration",
         date: "December 20, 2025",
         photos: 4,
+        images: [],
+        notes: [
+            { text: "Trivia", color: "#EA4335", rotate: 3 },
+            { text: "Awards", color: "#4285F4", rotate: -3 },
+            { text: "2026", color: "#FBBC05", rotate: 2 },
+            { text: "Fun", color: "#34A853", rotate: -4 }
+        ],
         description: "Wrap up an amazing year with the community. Awards, trivia night, and looking forward to 2026."
     },
 ];
@@ -120,19 +191,39 @@ eventsData.forEach((event, index) => {
     textSection.innerHTML = `
         <h2>${event.title}</h2>
         <span class="event-date">${event.date}</span>
+        <div class="sticky-notes-container"></div>
         <div class="event-description">${event.description}</div>
     `;
 
-    // Tape
-    const tape = document.createElement('div');
-    tape.className = 'tape';
-    const colors = ['rgba(66, 133, 244, 0.6)', 'rgba(234, 67, 53, 0.6)', 'rgba(251, 188, 5, 0.6)', 'rgba(52, 168, 83, 0.6)'];
-    tape.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    tape.style.transform = `rotate(${Math.random() * 10 - 5}deg)`;
-    tape.style.width = '60px';
-    tape.style.left = '45%';
-    tape.style.top = '-10px';
-    textSection.querySelector('.event-description').appendChild(tape);
+    // Custom Tape-Like Sticky Notes
+    const noteContainer = textSection.querySelector('.sticky-notes-container');
+
+    // Default Notes if none provided
+    const defaultNotes = [
+        { text: "Great Event!", color: '#4285F4', rotate: -2 },
+        { text: "Memories", color: '#EA4335', rotate: 1 },
+        { text: "2025", color: '#FBBC05', rotate: -1 }
+    ];
+
+    // Use custom notes from event data or defaults
+    const notesToRender = event.notes || defaultNotes;
+
+    notesToRender.forEach((noteData, nIndex) => {
+        const note = document.createElement('div');
+        note.classList.add('sticky-note');
+        // Allow simple string color or full object style
+        note.style.backgroundColor = noteData.color || '#FBBC05';
+        note.style.color = noteData.textColor || (noteData.color === '#FBBC05' ? '#333' : 'white');
+        note.innerText = noteData.text || "";
+
+        // Random positioning/Rotation if not specified
+        const rot = noteData.rotate !== undefined ? noteData.rotate : (Math.random() * 6) - 3;
+        note.style.transform = `rotate(${rot}deg)`;
+
+        // No manual left/top positioning needed! Flexbox handles it.
+
+        noteContainer.appendChild(note);
+    });
 
     content.appendChild(textSection);
 
@@ -140,15 +231,19 @@ eventsData.forEach((event, index) => {
     const visualSection = document.createElement('div');
     visualSection.className = 'event-grid';
 
-    for (let i = 0; i < event.photos; i++) {
+    // --- Generate Scatter Polaroids ---
+    const photosCount = event.photos; // Use event.photos for the number of polaroids
+
+    for (let i = 0; i < photosCount; i++) {
         const polaroid = document.createElement('div');
         polaroid.className = 'polaroid';
+        polaroid.style.zIndex = i + 1;
 
         // Responsive Scatter: Use Percentages!
         // Spread across 0% to 60% of width
         // i=0 -> 0-10%, i=3 -> 50-60%
         const maxLeft = 60;
-        const step = maxLeft / Math.max(event.photos - 1, 1);
+        const step = maxLeft / Math.max(photosCount - 1, 1);
 
         const randX = (Math.random() * 10) + (i * step);
         const randY = Math.random() * 20 + (i % 2) * 10;
@@ -159,12 +254,18 @@ eventsData.forEach((event, index) => {
         polaroid.style.transform = `rotate(${randRot}deg)`;
         polaroid.style.zIndex = i + 1;
 
-        const color = ['4285F4', 'EA4335', 'FBBC05', '34A853'][i % 4];
 
-        // Use random images from Unsplash Source or Picsum
-        // Adding a random sig to ensure they are different
-        const randomSig = Math.floor(Math.random() * 1000);
-        const imageUrl = `https://picsum.photos/seed/${randomSig}/200/200`;
+
+
+        // LOGIC: Use Custom Image if provided, otherwise Random Fallback
+        let imageUrl;
+        if (event.images && event.images[i]) {
+            imageUrl = event.images[i];
+        } else {
+            // Random Fallback
+            const randomSig = Math.floor(Math.random() * 1000);
+            imageUrl = `https://picsum.photos/seed/${randomSig}/200/200`;
+        }
 
         polaroid.innerHTML = `
             <div class="polaroid-content">
