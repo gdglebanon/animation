@@ -96,7 +96,7 @@ const eventsData = [
             { text: "Diverse", color: COLORS.BLUE, rotate: 4 },
             { text: "100+", color: COLORS.YELLOW, rotate: -2 }
         ],
-        description: "Strong collaboration with Laura brought diverse audiences outside the usual developer circle."
+        description: "We collaborated at the Women in Tech Roadshow conference, which brought diverse audiences outside the usual developer circle."
     },
     {
         title: "Build with AI 2025",
@@ -111,7 +111,7 @@ const eventsData = [
             { text: "Agentic AI", color: COLORS.GREEN, rotate: 2 },
             { text: "Fully Booked", color: COLORS.RED, rotate: 5 }
         ],
-        description: "High demand conference with excellent feedback on Agentic AI workshops."
+        description: "High demand conference with parallel technical tracks. The venue was fully booked with 500 attendees. Capacity couldn't meet the demand!"
     },
     {
         title: "Cybersecurity Day 2025",
@@ -126,7 +126,7 @@ const eventsData = [
             { text: "Experts", color: COLORS.BLUE, rotate: 3 },
             { text: "New Crowd", color: COLORS.GREEN, rotate: -2 }
         ],
-        description: "Collaboration with security experts provided deep technical value."
+        description: "We joined Semicolon Security in advocating for cyber security and celebrating the CTF winners. Applications are currently open for the next CTF round."
     },
     {
         title: "Google I/O Extended Beirut 2025",
@@ -141,7 +141,7 @@ const eventsData = [
             { text: "42 Collab", color: COLORS.BLUE, rotate: -3 },
             { text: "100 Devs", color: COLORS.GREEN, rotate: 4 }
         ],
-        description: "Big hybrid event with collaboration from 42."
+        description: "Hybrid event with collaboration from 42 Beirut. Successfully brought together 100 participants both in person and online for the updates from Google I/O."
     },
     {
         title: "DevFest Beirut 2025",
@@ -156,7 +156,7 @@ const eventsData = [
             { text: "40 Speakers", color: COLORS.BLUE, rotate: -3 },
             { text: "Biggest!", color: COLORS.YELLOW, rotate: 2 }
         ],
-        description: "The biggest event of the year! Over 1,100 attendees."
+        description: "The biggest event of the year! Over 1,100 attendees, 40+ speakers, and incredible community energy. The highlight of our 2025 calendar."
     },
     {
         title: "Build with AI - MENA Series",
@@ -171,7 +171,7 @@ const eventsData = [
             { text: "Regional", color: COLORS.BLUE, rotate: 3 },
             { text: "MENA", color: COLORS.YELLOW, rotate: -3 }
         ],
-        description: "Great regional visibility through ZAKA collaboration."
+        description: "Great regional visibility through collaboration with Google MENA and ZAKA. Connected developers with the broader MENA network."
     },
     {
         title: "DevFest North Lebanon",
@@ -186,7 +186,7 @@ const eventsData = [
             { text: "North LB", color: COLORS.BLUE, rotate: -2 },
             { text: "External", color: COLORS.GREEN, rotate: 3 }
         ],
-        description: "Expanding beyond Beirut! External event bringing DevFest to North Lebanon."
+        description: "Expanding beyond Beirut! DevFest North Lebanon welcomed approximately 1,000 attendees—a milestone for regional growth."
     }
 ];
 
