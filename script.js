@@ -18,8 +18,9 @@ const FALLBACK_IMAGES = [
     "Cyber1.jpg",
     "Cyberr2.jpg",
     "Cybersecc.jpeg",
-    "zaka.jpg",
+    "zakaAI1.jpeg",
     "zaka1.jpg",
+    "zaka.jpg",
     "devfestbei2.jpeg",
     "devfestbei3.jpeg",
     "Devfest2.jpeg",
@@ -29,6 +30,7 @@ const FALLBACK_IMAGES = [
 ];
 
 let fallbackIndex = 0;
+const polaroidLayoutCache = new Map();
 
 function ensureImageSet(images = []) {
     const sanitized = images.filter(Boolean);
@@ -37,6 +39,47 @@ function ensureImageSet(images = []) {
         fallbackIndex += 1;
     }
     return sanitized.slice(0, 3);
+}
+
+function randomBetween(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function getPolaroidLayout(cardIndex, count) {
+    if (polaroidLayoutCache.has(cardIndex)) {
+        return polaroidLayoutCache.get(cardIndex);
+    }
+
+    const baseLayout = [
+        {
+            className: 'polaroid polaroid-big',
+            left: `${randomBetween(2, 22).toFixed(2)}%`,
+            top: `${randomBetween(4, 18).toFixed(2)}%`,
+            rotate: randomBetween(-6, 6)
+        },
+        {
+            className: 'polaroid polaroid-small',
+            left: `${randomBetween(54, 74).toFixed(2)}%`,
+            top: `${randomBetween(6, 32).toFixed(2)}%`,
+            rotate: randomBetween(-14, 14)
+        },
+        {
+            className: 'polaroid polaroid-small',
+            left: `${randomBetween(48, 78).toFixed(2)}%`,
+            top: `${randomBetween(44, 72).toFixed(2)}%`,
+            rotate: randomBetween(-12, 12)
+        }
+    ];
+
+    const layout = Array.from({ length: count }, (_, i) => baseLayout[i] || {
+        className: 'polaroid polaroid-small',
+        left: `${randomBetween(45, 80).toFixed(2)}%`,
+        top: `${randomBetween(30, 75).toFixed(2)}%`,
+        rotate: randomBetween(-10, 10)
+    });
+
+    polaroidLayoutCache.set(cardIndex, layout);
+    return layout;
 }
 
 const eventsData = [
@@ -119,8 +162,9 @@ const eventsData = [
         title: "Build with AI - MENA Series",
         date: "December 15, 2025",
         images: [
-            "zaka.jpg",
-            "zaka1.jpg"
+            "zakaAI1.jpeg",
+            "zaka1.jpg",
+            "zaka.jpg"
         ],
         notes: [
             { text: "ZAKA", color: COLORS.GREEN, rotate: -2 },
@@ -277,22 +321,17 @@ eventsData.forEach((event, index) => {
 
     // --- Generate Polaroids: 1 Big + 2 Small ---
     const imagesForCard = ensureImageSet(event.images);
-    const placements = [
-        { className: 'polaroid polaroid-big', left: '0%', top: '5%', zIndex: 10, rotate: 4 },
-        { className: 'polaroid polaroid-small', left: '62%', top: '6%', zIndex: 8, rotate: 8 },
-        { className: 'polaroid polaroid-small', left: '58%', top: '55%', zIndex: 6, rotate: 8 }
-    ];
+    const layout = getPolaroidLayout(index, imagesForCard.length);
 
     imagesForCard.forEach((imageUrl, i) => {
         const polaroid = document.createElement('div');
-        const placement = placements[i] || placements[placements.length - 1];
+        const placement = layout[i] || layout[layout.length - 1];
 
         polaroid.className = placement.className;
         polaroid.style.left = placement.left;
         polaroid.style.top = placement.top;
-        polaroid.style.zIndex = placement.zIndex;
-        const angle = (Math.random() * placement.rotate * 2) - placement.rotate;
-        polaroid.style.transform = `rotate(${angle}deg)`;
+        polaroid.style.zIndex = placement.className.includes('big') ? 10 : 5 + i;
+        polaroid.style.transform = `rotate(${placement.rotate}deg)`;
 
         // Lazy load: store URL in data-src, load when card becomes active
         polaroid.innerHTML = `

@@ -166,26 +166,26 @@ h1 {
 
 /* Book Cover Styling */
 .book-cover {
-    background: #f1f0f0;
-    /* Light gray cover */
+    background: #fef6e8;
+    /* Light beige cover */
     background-image:
-        linear-gradient(135deg, #f1f0f0 0%, #e8e7e7 100%),
-        radial-gradient(circle at 20% 80%, rgba(200, 200, 200, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(220, 220, 220, 0.2) 0%, transparent 50%);
+        linear-gradient(135deg, #fff9ef 0%, #fbeedb 100%),
+        radial-gradient(circle at 20% 80%, rgba(255, 214, 165, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 238, 209, 0.2) 0%, transparent 50%);
     border: none;
-    border-left: 20px solid #c0c0c0;
-    /* Gray spine */
+    border-left: 20px solid #e4d5c2;
+    /* Warm spine */
     box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.3),
-        -10px 0 30px rgba(0, 0, 0, 0.2),
-        inset -5px 0 20px rgba(0, 0, 0, 0.15);
+        0 10px 40px rgba(0, 0, 0, 0.2),
+        -10px 0 30px rgba(0, 0, 0, 0.15),
+        inset -5px 0 20px rgba(0, 0, 0, 0.08);
 }
 
 .book-cover::before {
     left: -20px;
     width: 20px;
-    background: linear-gradient(to right, #a0a0a0, #c0c0c0);
-    /* Gray spine gradient */
+    background: linear-gradient(to right, #d0bfa8, #f1e4d1);
+    /* Beige spine gradient */
 }
 
 .book-cover-content {
@@ -377,7 +377,8 @@ h1 {
 /* Collage Grid */
 .event-grid {
     position: relative;
-    height: 100%;
+    min-height: 420px;
+    height: clamp(360px, 45vw, 520px);
     width: 100%;
 }
 
@@ -613,29 +614,78 @@ h1 {
         inset -5px 0 20px rgba(0, 0, 0, 0.15);
 }
 
+@media (max-width: 800px) {
+    .event-grid {
+        min-height: unset;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .polaroid {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+        width: min(90%, 260px) !important;
+        margin: 5px auto;
+    }
+
+    .polaroid-big {
+        width: min(95%, 300px) !important;
+    }
+
+    .polaroid-big .polaroid-img,
+    .polaroid-small .polaroid-img {
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+}
+
 @media (max-width: 600px) {
+    body {
+        padding: 10px 0;
+    }
+
     .header {
-        width: 90%;
-        padding: 10px;
+        width: 95%;
+        padding: 10px 15px;
+        margin-bottom: 15px;
+    }
+
+    .header .logo {
+        height: 24px;
     }
 
     h1 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    .header p {
+        font-size: 0.85rem;
+        margin: 3px 0 0 0;
     }
 
     .scroll-container {
-        max-width: 95%;
+        max-width: 98%;
+        padding-top: 10px;
+        min-height: 520px;
+    }
+
+    .card-content {
+        display: flex;
+        flex-direction: column;
     }
 
     .event-card {
         height: 500px;
-        /* Slightly shorter */
-        padding: 20px;
+        padding: 15px;
     }
 
     .event-card h2 {
-        font-size: 1.5rem;
-        /* Smaller title */
+        font-size: 1.3rem;
     }
 
     /* Book Cover Mobile */
@@ -695,8 +745,8 @@ h1 {
     /* Page Progress Mobile */
     .page-progress {
         bottom: 10px;
-        left: 20px;
-        right: 20px;
+        left: 15px;
+        right: 15px;
     }
 
     .page-progress-bar {
@@ -705,39 +755,310 @@ h1 {
 
     .text-section {
         padding: 0;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
+        flex-shrink: 0;
+    }
+
+    .event-date {
+        font-size: 0.95rem;
+        margin-top: 3px;
     }
 
     .event-description {
-        font-size: 1rem;
-        width: 95%;
+        font-size: 0.85rem;
+        width: 100%;
+        padding: 6px;
+        margin-top: 5px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
-    /* Adjust Polaroids size for mobile */
+    .sticky-notes-container {
+        gap: 4px;
+        min-height: 22px;
+        margin: 2px 0 5px 0;
+    }
+
+    .sticky-note {
+        width: 45px;
+        height: 20px;
+        font-size: 0.45rem;
+        padding: 2px;
+    }
+
+    /* Mobile image grid - row layout */
+    .event-grid {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 8px;
+        min-height: auto;
+        flex: 1;
+        padding-bottom: 25px;
+    }
+
+    /* Reset all polaroid positioning for mobile */
+    .polaroid {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        transform: rotate(0deg) !important;
+    }
+
     .polaroid-big {
-        width: 220px;
+        width: 55% !important;
+        flex-shrink: 0;
     }
 
     .polaroid-big .polaroid-img {
-        height: 170px;
+        height: 180px;
     }
 
+    /* Container for small polaroids */
     .polaroid-small {
-        width: 110px;
+        width: calc(45% - 8px) !important;
     }
 
     .polaroid-small .polaroid-content {
-        padding: 6px;
+        padding: 4px;
     }
 
     .polaroid-small .polaroid-img {
-        height: 85px;
+        height: 80px;
+    }
+
+    /* Stack small polaroids vertically */
+    .polaroid-small:nth-child(2) {
+        position: absolute !important;
+        right: 0 !important;
+        left: auto !important;
+        top: 0 !important;
+        width: 40% !important;
+    }
+
+    .polaroid-small:nth-child(3) {
+        position: absolute !important;
+        right: 0 !important;
+        left: auto !important;
+        top: 95px !important;
+        width: 40% !important;
+    }
+
+    /* Make event-grid relative for absolute children */
+    .event-grid {
+        position: relative;
     }
 
     /* Paper plane smaller */
     .paper-plane {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Extra small screens (phones in portrait) */
+@media (max-width: 480px) {
+    .header {
+        padding: 8px 12px;
+    }
+
+    .header h1 {
+        font-size: 1rem;
+    }
+
+    .header p {
+        font-size: 0.75rem;
+    }
+
+    .logo {
+        height: 20px;
+    }
+
+    .scroll-container {
+        min-height: 450px;
+    }
+
+    .event-card {
+        height: 420px;
+        padding: 12px;
+    }
+
+    .event-card h2 {
+        font-size: 1.1rem;
+    }
+
+    .event-date {
+        font-size: 0.85rem;
+    }
+
+    .event-description {
+        font-size: 0.75rem;
+        padding: 5px;
+        -webkit-line-clamp: 2;
+    }
+
+    .sticky-note {
+        width: 40px;
+        height: 18px;
+        font-size: 0.4rem;
+    }
+
+    /* Smaller polaroids for tiny screens */
+    .polaroid-big {
+        width: 52% !important;
+    }
+
+    .polaroid-big .polaroid-img {
+        height: 140px;
+    }
+
+    .polaroid-small:nth-child(2),
+    .polaroid-small:nth-child(3) {
+        width: 42% !important;
+    }
+
+    .polaroid-small .polaroid-img {
+        height: 60px;
+    }
+
+    .polaroid-small:nth-child(3) {
+        top: 75px !important;
+    }
+
+    .polaroid-small .polaroid-content {
+        padding: 3px;
+    }
+
+    /* Book cover mobile */
+    .cover-title {
+        font-size: 1.4rem;
+    }
+
+    .cover-year {
+        font-size: 2.2rem;
+        letter-spacing: 4px;
+    }
+
+    .cover-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .cover-logo {
+        height: 35px;
+        margin-bottom: 15px;
+    }
+
+    .google-colors-bar span {
+        width: 40px;
+        height: 5px;
+    }
+
+    /* Back cover */
+    .back-title {
+        font-size: 1.4rem;
+    }
+
+    .back-subtitle {
+        font-size: 1rem;
+    }
+
+    .social-links {
+        gap: 15px;
+    }
+
+    .social-link svg {
         width: 40px;
         height: 40px;
+    }
+
+    .handles-row {
+        font-size: 0.75rem;
+        gap: 8px;
+    }
+
+    .handles-row span {
+        padding: 5px 10px;
+    }
+}
+
+/* Very small screens (older/smaller phones) */
+@media (max-width: 360px) {
+    .header {
+        padding: 6px 10px;
+    }
+
+    .header h1 {
+        font-size: 0.9rem;
+    }
+
+    .event-card {
+        height: 380px;
+        padding: 10px;
+    }
+
+    .event-card h2 {
+        font-size: 0.95rem;
+    }
+
+    .event-date {
+        font-size: 0.75rem;
+    }
+
+    .event-description {
+        font-size: 0.7rem;
+        padding: 4px;
+    }
+
+    .sticky-note {
+        width: 35px;
+        height: 16px;
+        font-size: 0.35rem;
+    }
+
+    .polaroid-big .polaroid-img {
+        height: 110px;
+    }
+
+    .polaroid-small .polaroid-img {
+        height: 50px;
+    }
+
+    .polaroid-small:nth-child(3) {
+        top: 62px !important;
+    }
+
+    .cover-title {
+        font-size: 1.2rem;
+    }
+
+    .cover-year {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+        margin: 15px 0;
+    }
+
+    .cover-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .cover-logo {
+        height: 30px;
+    }
+
+    .google-colors-bar span {
+        width: 30px;
+        height: 4px;
+    }
+
+    .back-title {
+        font-size: 1.2rem;
+    }
+
+    .social-link svg {
+        width: 35px;
+        height: 35px;
     }
 }
 
