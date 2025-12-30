@@ -7,23 +7,30 @@ const COLORS = {
 
 const FALLBACK_IMAGES = [
     "BuildwithAI.jpg",
+    "BuildwithAI3.jpg",
+    "BuildwithAI4.jpg",
     "Google IO Extended Beirut 2025-pt1.jpg",
     "Google IO Extended Beirut 20252.jpg",
-    "IMG-20250906-WA0103.jpg",
-    "PHOTO-2025-04-12-17-20-42 2.jpg",
-    "PHOTO-2025-04-12-19-56-24.jpg",
-    "IMG_7301-EDIT.jpg",
-    "Women intechRoadshow.jpg",
-    "IMG-20250222-WA0094.jpg",
-    "Cybersec.jpeg",
+    "gOOGLEio2.jpg",
+    "WTRS1.jpg",
+    "WTRS2.jpg",
+    "WTRS3.jpg",
+    "Cyber1.jpg",
+    "Cyberr2.jpg",
     "Cybersecc.jpeg",
-    "zaka.jpg",
+    "zakaAI1.jpeg",
     "zaka1.jpg",
+    "zaka.jpg",
     "devfestbei2.jpeg",
-    "devfestbei3.jpeg"
+    "devfestbei3.jpeg",
+    "Devfest2.jpeg",
+    "north.JPG",
+    "north1.jpeg",
+    "north3.jpeg"
 ];
 
 let fallbackIndex = 0;
+const polaroidLayoutCache = new Map();
 
 function ensureImageSet(images = []) {
     const sanitized = images.filter(Boolean);
@@ -34,68 +41,107 @@ function ensureImageSet(images = []) {
     return sanitized.slice(0, 3);
 }
 
+function randomBetween(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function getPolaroidLayout(cardIndex, count) {
+    if (polaroidLayoutCache.has(cardIndex)) {
+        return polaroidLayoutCache.get(cardIndex);
+    }
+
+    const baseLayout = [
+        {
+            className: 'polaroid polaroid-big',
+            left: `${randomBetween(2, 22).toFixed(2)}%`,
+            top: `${randomBetween(4, 18).toFixed(2)}%`,
+            rotate: randomBetween(-6, 6)
+        },
+        {
+            className: 'polaroid polaroid-small',
+            left: `${randomBetween(54, 74).toFixed(2)}%`,
+            top: `${randomBetween(6, 32).toFixed(2)}%`,
+            rotate: randomBetween(-14, 14)
+        },
+        {
+            className: 'polaroid polaroid-small',
+            left: `${randomBetween(48, 78).toFixed(2)}%`,
+            top: `${randomBetween(44, 72).toFixed(2)}%`,
+            rotate: randomBetween(-12, 12)
+        }
+    ];
+
+    const layout = Array.from({ length: count }, (_, i) => baseLayout[i] || {
+        className: 'polaroid polaroid-small',
+        left: `${randomBetween(45, 80).toFixed(2)}%`,
+        top: `${randomBetween(30, 75).toFixed(2)}%`,
+        rotate: randomBetween(-10, 10)
+    });
+
+    polaroidLayoutCache.set(cardIndex, layout);
+    return layout;
+}
+
 const eventsData = [
     {
         title: "GDG @ Women In Tech Roadshow",
         date: "February 22, 2025",
         images: [
-            "Women intechRoadshow.jpg",
-            "IMG_7301-EDIT.jpg",
-            "IMG-20250222-WA0094.jpg"
+            "WTRS1.jpg",
+            "WTRS2.jpg",
+            "WTRS3.jpg"
         ],
         notes: [
-            { text: "Laura ✨", color: COLORS.RED, rotate: -3 },
+            { text: "Laura", color: COLORS.RED, rotate: -3 },
             { text: "Diverse", color: COLORS.BLUE, rotate: 4 },
             { text: "100+", color: COLORS.YELLOW, rotate: -2 }
         ],
-        description: "Strong collaboration with Laura brought diverse audiences outside the usual developer circle. A successful reach to new communities!"
+        description: "Strong collaboration with Laura brought diverse audiences outside the usual developer circle."
     },
     {
         title: "Build with AI 2025",
         date: "April 12, 2025",
         images: [
             "BuildwithAI.jpg",
-            "PHOTO-2025-04-12-17-01-31.jpg",
-            "PHOTO-2025-04-12-19-56-22.jpg"
+            "BuildwithAI3.jpg",
+            "BuildwithAI4.jpg"
         ],
         notes: [
             { text: "500 Devs", color: COLORS.BLUE, rotate: -5 },
             { text: "Agentic AI", color: COLORS.GREEN, rotate: 2 },
-            { text: "Fully Booked", color: COLORS.RED, rotate: 5 },
-            { text: "Waitlist!", color: COLORS.YELLOW, rotate: 3 }
+            { text: "Fully Booked", color: COLORS.RED, rotate: 5 }
         ],
-        description: "High demand conference with excellent feedback on Agentic AI workshops. Venue was fully booked with 500 attendees - capacity couldn't meet the demand!"
+        description: "High demand conference with excellent feedback on Agentic AI workshops."
     },
     {
         title: "Cybersecurity Day 2025",
         date: "June 15, 2025",
         images: [
-            "Cybersec.jpeg",
-            "Cybersecc.jpeg",
-            "Cybersec.jpeg"
+            "Cyber1.jpg",
+            "Cyberr2.jpg",
+            "Cybersecc.jpeg"
         ],
         notes: [
             { text: "Security", color: COLORS.RED, rotate: -4 },
             { text: "Experts", color: COLORS.BLUE, rotate: 3 },
             { text: "New Crowd", color: COLORS.GREEN, rotate: -2 }
         ],
-        description: "Collaboration with security experts provided deep technical value, attracting a new segment of professionals to the community."
+        description: "Collaboration with security experts provided deep technical value."
     },
     {
         title: "Google I/O Extended Beirut 2025",
         date: "September 6, 2025",
         images: [
             "Google IO Extended Beirut 2025-pt1.jpg",
-            "IMG-20250906-WA0103.jpg",
-            "Google IO Extended Beirut 20252.jpg"
+            "Google IO Extended Beirut 20252.jpg",
+            "gOOGLEio2.jpg"
         ],
         notes: [
             { text: "Hybrid", color: COLORS.YELLOW, rotate: 2 },
             { text: "42 Collab", color: COLORS.BLUE, rotate: -3 },
-            { text: "100 Devs", color: COLORS.GREEN, rotate: 4 },
-            { text: "Big Event", color: COLORS.RED, rotate: -1 }
+            { text: "100 Devs", color: COLORS.GREEN, rotate: 4 }
         ],
-        description: "Big hybrid event with collaboration from 42. Successfully brought together 100 participants both in-person and online."
+        description: "Big hybrid event with collaboration from 42."
     },
     {
         title: "DevFest Beirut 2025",
@@ -103,30 +149,29 @@ const eventsData = [
         images: [
             "devfestbei2.jpeg",
             "devfestbei3.jpeg",
-            "PHOTO-2025-04-12-17-20-42 2.jpg"
+            "Devfest2.jpeg"
         ],
         notes: [
             { text: "1,100+", color: COLORS.RED, rotate: 3 },
             { text: "40 Speakers", color: COLORS.BLUE, rotate: -3 },
-            { text: "Biggest!", color: COLORS.YELLOW, rotate: 2 },
-            { text: "Energy", color: COLORS.GREEN, rotate: -4 }
+            { text: "Biggest!", color: COLORS.YELLOW, rotate: 2 }
         ],
-        description: "The biggest event of the year! Over 1,100 attendees, 40+ speakers, and incredible community energy. The highlight of our 2025 calendar."
+        description: "The biggest event of the year! Over 1,100 attendees."
     },
     {
         title: "Build with AI - MENA Series",
         date: "December 15, 2025",
         images: [
-            "zaka.jpg",
+            "zakaAI1.jpeg",
             "zaka1.jpg",
-            "BuildwithAI.jpg"
+            "zaka.jpg"
         ],
         notes: [
             { text: "ZAKA", color: COLORS.GREEN, rotate: -2 },
             { text: "Regional", color: COLORS.BLUE, rotate: 3 },
             { text: "MENA", color: COLORS.YELLOW, rotate: -3 }
         ],
-        description: "Great regional visibility through ZAKA collaboration. Connected local developers with the broader MENA network despite end-of-year timing challenges."
+        description: "Great regional visibility through ZAKA collaboration."
     },
     {
         title: "DevFest North Lebanon",
@@ -139,10 +184,9 @@ const eventsData = [
         notes: [
             { text: "1,000!", color: COLORS.RED, rotate: 4 },
             { text: "North LB", color: COLORS.BLUE, rotate: -2 },
-            { text: "External", color: COLORS.GREEN, rotate: 3 },
-            { text: "Expansion", color: COLORS.YELLOW, rotate: -4 }
+            { text: "External", color: COLORS.GREEN, rotate: 3 }
         ],
-        description: "Expanding beyond Beirut! External event bringing DevFest to North Lebanon with approximately 1,000 attendees. A milestone for regional growth."
+        description: "Expanding beyond Beirut! External event bringing DevFest to North Lebanon."
     }
 ];
 
@@ -277,22 +321,17 @@ eventsData.forEach((event, index) => {
 
     // --- Generate Polaroids: 1 Big + 2 Small ---
     const imagesForCard = ensureImageSet(event.images);
-    const placements = [
-        { className: 'polaroid polaroid-big', left: '0%', top: '5%', zIndex: 10, rotate: 4 },
-        { className: 'polaroid polaroid-small', left: '62%', top: '6%', zIndex: 8, rotate: 8 },
-        { className: 'polaroid polaroid-small', left: '58%', top: '55%', zIndex: 6, rotate: 8 }
-    ];
+    const layout = getPolaroidLayout(index, imagesForCard.length);
 
     imagesForCard.forEach((imageUrl, i) => {
         const polaroid = document.createElement('div');
-        const placement = placements[i] || placements[placements.length - 1];
+        const placement = layout[i] || layout[layout.length - 1];
 
         polaroid.className = placement.className;
         polaroid.style.left = placement.left;
         polaroid.style.top = placement.top;
-        polaroid.style.zIndex = placement.zIndex;
-        const angle = (Math.random() * placement.rotate * 2) - placement.rotate;
-        polaroid.style.transform = `rotate(${angle}deg)`;
+        polaroid.style.zIndex = placement.className.includes('big') ? 10 : 5 + i;
+        polaroid.style.transform = `rotate(${placement.rotate}deg)`;
 
         // Lazy load: store URL in data-src, load when card becomes active
         polaroid.innerHTML = `
