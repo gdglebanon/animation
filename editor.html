@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDG Year in Review - Editor</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Google Sans', -apple-system, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .header {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #4285F4;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #4285F4;
+            color: white;
+        }
+        .btn-primary:hover { background: #3367D6; }
+        .btn-success {
+            background: #34A853;
+            color: white;
+        }
+        .btn-success:hover { background: #2E7D32; }
+        .btn-danger {
+            background: #EA4335;
+            color: white;
+        }
+        .btn-danger:hover { background: #C62828; }
+
+        .events-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .event-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .event-number {
+            background: #4285F4;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #555;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #4285F4;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+        }
+
+        /* Images Section */
+        .images-section {
+            margin-top: 20px;
+        }
+        .images-section h4 {
+            margin: 0 0 12px 0;
+            color: #555;
+        }
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .image-slot {
+            position: relative;
+            aspect-ratio: 4/3;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #fafafa;
+        }
+        .image-slot:hover {
+            border-color: #4285F4;
+            background: #f0f7ff;
+        }
+        .image-slot.has-image {
+            border-style: solid;
+            border-color: #ddd;
+        }
+        .image-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-slot .placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #999;
+        }
+        .image-slot .placeholder svg {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 5px;
+        }
+        .image-slot input[type="file"] {
+            display: none;
+        }
+        .image-slot .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #EA4335;
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            display: none;
+        }
+        .image-slot.has-image .remove-btn {
+            display: block;
+        }
+        .image-slot .image-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 8px;
+            font-size: 11px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Notes Section */
+        .notes-section {
+            margin-top: 20px;
+        }
+        .notes-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .note-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f5f5f5;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+        .note-item input {
+            width: 100px;
+            padding: 6px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .note-color {
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .note-remove {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .note-remove:hover { color: #EA4335; }
+        .add-note-btn {
+            background: #f0f0f0;
+            border: 1px dashed #ccc;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #666;
+        }
+        .add-note-btn:hover {
+            background: #e8e8e8;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow: auto;
+        }
+        .modal-content h2 {
+            margin-top: 0;
+        }
+        .modal-content pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 12px;
+            max-height: 300px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>GDG Year in Review - Editor</h1>
+        <div style="display: flex; gap: 10px;">
+            <button class="btn btn-primary" onclick="addEvent()">+ Add Event</button>
+            <button class="btn btn-success" onclick="exportData()">Export & Save</button>
+            <a href="index.html" class="btn btn-primary" style="text-decoration: none;">Preview</a>
+        </div>
+    </div>
+
+    <div class="events-container" id="eventsContainer"></div>
+
+    <!-- Export Modal -->
+    <div class="modal" id="exportModal">
+        <div class="modal-content">
+            <h2>Export Data</h2>
+            <p>Copy this code and replace the <code>eventsData</code> array in <code>script.js</code>:</p>
+            <pre id="exportCode"></pre>
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                <button class="btn btn-primary" onclick="copyToClipboard()">Copy to Clipboard</button>
+                <button class="btn btn-danger" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const COLORS = {
+            BLUE: "#4285F4",
+            RED: "#EA4335",
+            YELLOW: "#FBBC05",
+            GREEN: "#34A853"
+        };
+
+        // Load existing data
+        let eventsData = [
+            {
+                title: "GDG @ Women In Tech Roadshow",
+                date: "February 22, 2025",
+                images: ["Women intechRoadshow.jpg", "IMG_7301-EDIT.jpg", "IMG-20250222-WA0094.jpg"],
+                notes: [
+                    { text: "Laura", color: "#EA4335" },
+                    { text: "Diverse", color: "#4285F4" },
+                    { text: "100+", color: "#FBBC05" }
+                ],
+                description: "Strong collaboration with Laura brought diverse audiences outside the usual developer circle."
+            },
+            {
+                title: "Build with AI 2025",
+                date: "April 12, 2025",
+                images: ["BuildwithAI.jpg", "PHOTO-2025-04-12-17-01-31.jpg", "PHOTO-2025-04-12-19-56-22.jpg"],
+                notes: [
+                    { text: "500 Devs", color: "#4285F4" },
+                    { text: "Agentic AI", color: "#34A853" },
+                    { text: "Fully Booked", color: "#EA4335" }
+                ],
+                description: "High demand conference with excellent feedback on Agentic AI workshops."
+            },
+            {
+                title: "Cybersecurity Day 2025",
+                date: "June 15, 2025",
+                images: ["Cybersec.jpeg", "Cybersecc.jpeg", "Cybersec.jpeg"],
+                notes: [
+                    { text: "Security", color: "#EA4335" },
+                    { text: "Experts", color: "#4285F4" },
+                    { text: "New Crowd", color: "#34A853" }
+                ],
+                description: "Collaboration with security experts provided deep technical value."
+            },
+            {
+                title: "Google I/O Extended Beirut 2025",
+                date: "September 6, 2025",
+                images: ["Google IO Extended Beirut 2025-pt1.jpg", "IMG-20250906-WA0103.jpg", "Google IO Extended Beirut 20252.jpg"],
+                notes: [
+                    { text: "Hybrid", color: "#FBBC05" },
+                    { text: "42 Collab", color: "#4285F4" },
+                    { text: "100 Devs", color: "#34A853" }
+                ],
+                description: "Big hybrid event with collaboration from 42."
+            },
+            {
+                title: "DevFest Beirut 2025",
+                date: "October 25, 2025",
+                images: ["devfestbei2.jpeg", "devfestbei3.jpeg", "PHOTO-2025-04-12-17-20-42 2.jpg"],
+                notes: [
+                    { text: "1,100+", color: "#EA4335" },
+                    { text: "40 Speakers", color: "#4285F4" },
+                    { text: "Biggest!", color: "#FBBC05" }
+                ],
+                description: "The biggest event of the year! Over 1,100 attendees."
+            },
+            {
+                title: "Build with AI - MENA Series",
+                date: "December 15, 2025",
+                images: ["zaka.jpg", "zaka1.jpg", "BuildwithAI.jpg"],
+                notes: [
+                    { text: "ZAKA", color: "#34A853" },
+                    { text: "Regional", color: "#4285F4" },
+                    { text: "MENA", color: "#FBBC05" }
+                ],
+                description: "Great regional visibility through ZAKA collaboration."
+            },
+            {
+                title: "DevFest North Lebanon",
+                date: "December 20, 2025",
+                images: ["north.JPG", "north1.jpeg", "north3.jpeg"],
+                notes: [
+                    { text: "1,000!", color: "#EA4335" },
+                    { text: "North LB", color: "#4285F4" },
+                    { text: "External", color: "#34A853" }
+                ],
+                description: "Expanding beyond Beirut! External event bringing DevFest to North Lebanon."
+            }
+        ];
+
+        function renderEvents() {
+            const container = document.getElementById('eventsContainer');
+            container.innerHTML = eventsData.map((event, idx) => `
+                <div class="event-card" data-index="${idx}">
+                    <div class="event-header">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span class="event-number">${idx + 1}</span>
+                            <h3 style="margin: 0;">${event.title || 'New Event'}</h3>
+                        </div>
+                        <button class="btn btn-danger" onclick="deleteEvent(${idx})">Delete</button>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Event Title</label>
+                            <input type="text" value="${event.title || ''}" onchange="updateField(${idx}, 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="text" value="${event.date || ''}" onchange="updateField(${idx}, 'date', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea onchange="updateField(${idx}, 'description', this.value)">${event.description || ''}</textarea>
+                    </div>
+
+                    <div class="images-section">
+                        <h4>Images (3 required)</h4>
+                        <div class="images-grid">
+                            ${[0, 1, 2].map(i => `
+                                <div class="image-slot ${event.images[i] ? 'has-image' : ''}" onclick="triggerUpload(${idx}, ${i})">
+                                    ${event.images[i] ? `
+                                        <img src="${event.images[i]}" onerror="this.style.display='none'">
+                                        <span class="image-name">${event.images[i]}</span>
+                                        <button class="remove-btn" onclick="event.stopPropagation(); removeImage(${idx}, ${i})">×</button>
+                                    ` : `
+                                        <div class="placeholder">
+                                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 7v2.99s-1.99.01-2 0V7h-3s.01-1.99 0-2h3V2h2v3h3v2h-3zm-3 4V8h-3V5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8h-3zM5 19l3-4 2 3 3-4 4 5H5z"/></svg>
+                                            <div>Click to upload</div>
+                                        </div>
+                                    `}
+                                    <input type="file" accept="image/*" onchange="handleImageUpload(${idx}, ${i}, this)">
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="notes-section">
+                        <h4>Sticky Notes</h4>
+                        <div class="notes-grid">
+                            ${(event.notes || []).map((note, ni) => `
+                                <div class="note-item">
+                                    <input type="color" class="note-color" value="${note.color}" onchange="updateNote(${idx}, ${ni}, 'color', this.value)">
+                                    <input type="text" value="${note.text}" onchange="updateNote(${idx}, ${ni}, 'text', this.value)" placeholder="Note text">
+                                    <button class="note-remove" onclick="removeNote(${idx}, ${ni})">×</button>
+                                </div>
+                            `).join('')}
+                            <button class="add-note-btn" onclick="addNote(${idx})">+ Add Note</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateField(idx, field, value) {
+            eventsData[idx][field] = value;
+            showToast('Updated!');
+        }
+
+        function updateNote(eventIdx, noteIdx, field, value) {
+            eventsData[eventIdx].notes[noteIdx][field] = value;
+        }
+
+        function addNote(idx) {
+            if (!eventsData[idx].notes) eventsData[idx].notes = [];
+            eventsData[idx].notes.push({ text: "New", color: "#4285F4", rotate: 0 });
+            renderEvents();
+        }
+
+        function removeNote(eventIdx, noteIdx) {
+            eventsData[eventIdx].notes.splice(noteIdx, 1);
+            renderEvents();
+        }
+
+        function triggerUpload(eventIdx, imageIdx) {
+            const card = document.querySelector(`[data-index="${eventIdx}"]`);
+            const inputs = card.querySelectorAll('input[type="file"]');
+            inputs[imageIdx].click();
+        }
+
+        async function handleImageUpload(eventIdx, imageIdx, input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            showToast('Compressing image...');
+
+            try {
+                const compressed = await compressImage(file);
+                const filename = file.name.replace(/\s+/g, '_');
+
+                // Store as data URL for preview, but save filename
+                eventsData[eventIdx].images[imageIdx] = filename;
+
+                // Download compressed image
+                const link = document.createElement('a');
+                link.href = compressed;
+                link.download = filename;
+                link.click();
+
+                showToast('Image compressed & downloaded! Move it to the animation folder.');
+                renderEvents();
+            } catch (err) {
+                showToast('Error: ' + err.message);
+            }
+        }
+
+        function compressImage(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const maxSize = 800;
+                        let { width, height } = img;
+
+                        if (width > height && width > maxSize) {
+                            height = (height * maxSize) / width;
+                            width = maxSize;
+                        } else if (height > maxSize) {
+                            width = (width * maxSize) / height;
+                            height = maxSize;
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        resolve(canvas.toDataURL('image/jpeg', 0.75));
+                    };
+                    img.onerror = reject;
+                    img.src = e.target.result;
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function removeImage(eventIdx, imageIdx) {
+            eventsData[eventIdx].images[imageIdx] = '';
+            renderEvents();
+        }
+
+        function addEvent() {
+            eventsData.push({
+                title: "New Event",
+                date: "Date, 2025",
+                images: ['', '', ''],
+                notes: [{ text: "Note", color: "#4285F4", rotate: 0 }],
+                description: "Event description here."
+            });
+            renderEvents();
+            showToast('Event added!');
+        }
+
+        function deleteEvent(idx) {
+            if (confirm('Delete this event?')) {
+                eventsData.splice(idx, 1);
+                renderEvents();
+                showToast('Event deleted!');
+            }
+        }
+
+        function exportData() {
+            const code = `const eventsData = ${JSON.stringify(eventsData, null, 4)
+                .replace(/"color": "#4285F4"/g, '"color": COLORS.BLUE')
+                .replace(/"color": "#EA4335"/g, '"color": COLORS.RED')
+                .replace(/"color": "#FBBC05"/g, '"color": COLORS.YELLOW')
+                .replace(/"color": "#34A853"/g, '"color": COLORS.GREEN')
+            };`;
+
+            document.getElementById('exportCode').textContent = code;
+            document.getElementById('exportModal').classList.add('active');
+        }
+
+        function copyToClipboard() {
+            const code = document.getElementById('exportCode').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('Copied to clipboard!');
+            });
+        }
+
+        function closeModal() {
+            document.getElementById('exportModal').classList.remove('active');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // Initialize
+        renderEvents();
+    </script>
+</body>
+</html>
