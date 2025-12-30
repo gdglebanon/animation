@@ -5,11 +5,36 @@ const COLORS = {
     GREEN: "#34A853"
 };
 
+const FALLBACK_IMAGES = [
+    "BuildwithAI.jpg",
+    "Google IO Extended Beirut 2025.jpg",
+    "Google IO Extended Beirut 20252.jpg",
+    "IMG-20250906-WA0103.jpg",
+    "PHOTO-2025-04-12-17-20-42 2.jpg",
+    "PHOTO-2025-04-12-19-56-24.jpg",
+    "IMG_7301-EDIT.jpg",
+    "Women intechRoadshow.jpg",
+    "Cybersec.jpeg",
+    "Cybersecc.jpeg",
+    "zaka.jpg",
+    "zaka1.jpg"
+];
+
+let fallbackIndex = 0;
+
+function ensureImageSet(images = []) {
+    const sanitized = images.filter(Boolean);
+    while (sanitized.length < 3) {
+        sanitized.push(FALLBACK_IMAGES[fallbackIndex % FALLBACK_IMAGES.length]);
+        fallbackIndex += 1;
+    }
+    return sanitized.slice(0, 3);
+}
+
 const eventsData = [
     {
         title: "GDG @ Women In Tech Roadshow",
         date: "February 22, 2025",
-        photos: 2,
         images: [
             "Women intechRoadshow.jpg",
             "IMG_7301-EDIT.jpg"
@@ -24,7 +49,6 @@ const eventsData = [
     {
         title: "Build with AI 2025",
         date: "April 12, 2025",
-        photos: 4,
         images: [
             "BuildwithAI.jpg",
             "PHOTO-2025-04-12-17-01-31.jpg",
@@ -44,7 +68,6 @@ const eventsData = [
     {
         title: "Cybersecurity Day 2025",
         date: "June 15, 2025",
-        photos: 2,
         images: [
             "Cybersec.jpeg",
             "Cybersecc.jpeg"
@@ -59,7 +82,6 @@ const eventsData = [
     {
         title: "Google I/O Extended Beirut 2025",
         date: "September 6, 2025",
-        photos: 3,
         images: [
             "Google IO Extended Beirut 2025.jpg",
             "IMG-20250906-WA0103.jpg",
@@ -76,8 +98,11 @@ const eventsData = [
     {
         title: "DevFest Beirut 2025",
         date: "October 25, 2025",
-        photos: 0,
-        images: [],
+        images: [
+            "Google IO Extended Beirut 2025.jpg",
+            "PHOTO-2025-04-12-17-16-21 2.jpg",
+            "IMG-20250906-WA0103.jpg"
+        ],
         notes: [
             { text: "1,100+", color: COLORS.RED, rotate: 3 },
             { text: "40 Speakers", color: COLORS.BLUE, rotate: -3 },
@@ -89,8 +114,10 @@ const eventsData = [
     {
         title: "Build with AI - MENA Series",
         date: "December 15, 2025",
-        photos: 0,
-        images: [],
+        images: [
+            "zaka.jpg",
+            "zaka1.jpg"
+        ],
         notes: [
             { text: "ZAKA", color: COLORS.GREEN, rotate: -2 },
             { text: "Regional", color: COLORS.BLUE, rotate: 3 },
@@ -101,8 +128,10 @@ const eventsData = [
     {
         title: "DevFest North Lebanon",
         date: "December 20, 2025",
-        photos: 0,
-        images: [],
+        images: [
+            "PHOTO-2025-04-12-17-20-42 2.jpg",
+            "BuildwithAI.jpg"
+        ],
         notes: [
             { text: "1,000!", color: COLORS.RED, rotate: 4 },
             { text: "North LB", color: COLORS.BLUE, rotate: -2 },
@@ -242,33 +271,24 @@ eventsData.forEach((event, index) => {
     const visualSection = document.createElement('div');
     visualSection.className = 'event-grid';
 
-    // --- Generate Polaroids: 1 Big + Small ones ---
-    const actualImages = event.images ? event.images.filter(img => img) : [];
+    // --- Generate Polaroids: 1 Big + 2 Small ---
+    const imagesForCard = ensureImageSet(event.images);
+    const placements = [
+        { className: 'polaroid polaroid-big', left: '0%', top: '5%', zIndex: 10, rotate: 4 },
+        { className: 'polaroid polaroid-small', left: '62%', top: '6%', zIndex: 8, rotate: 8 },
+        { className: 'polaroid polaroid-small', left: '58%', top: '55%', zIndex: 6, rotate: 8 }
+    ];
 
-    actualImages.forEach((imageUrl, i) => {
+    imagesForCard.forEach((imageUrl, i) => {
         const polaroid = document.createElement('div');
-        const isBig = (i === 0); // First image is big
+        const placement = placements[i] || placements[placements.length - 1];
 
-        polaroid.className = isBig ? 'polaroid polaroid-big' : 'polaroid polaroid-small';
-
-        if (isBig) {
-            // Big image: positioned left side
-            polaroid.style.left = '0%';
-            polaroid.style.top = '5%';
-            polaroid.style.transform = `rotate(${Math.random() * 6 - 3}deg)`;
-            polaroid.style.zIndex = 10;
-        } else {
-            // Small images: scattered on right side
-            const smallIndex = i - 1;
-            const randX = 55 + (smallIndex % 2) * 20 + Math.random() * 10;
-            const randY = 5 + Math.floor(smallIndex / 2) * 35 + Math.random() * 10;
-            const randRot = Math.random() * 20 - 10;
-
-            polaroid.style.left = `${randX}%`;
-            polaroid.style.top = `${randY}%`;
-            polaroid.style.transform = `rotate(${randRot}deg)`;
-            polaroid.style.zIndex = i + 1;
-        }
+        polaroid.className = placement.className;
+        polaroid.style.left = placement.left;
+        polaroid.style.top = placement.top;
+        polaroid.style.zIndex = placement.zIndex;
+        const angle = (Math.random() * placement.rotate * 2) - placement.rotate;
+        polaroid.style.transform = `rotate(${angle}deg)`;
 
         polaroid.innerHTML = `
             <div class="polaroid-content">
