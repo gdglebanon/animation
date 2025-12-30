@@ -9,10 +9,9 @@ const eventsData = [
     {
         title: "GDG @ Women In Tech Roadshow",
         date: "February 22, 2025",
-        photos: 3,
+        photos: 2,
         images: [
-            "IMG-20250222-WA0029.jpg",
-            "IMG-20250222-WA0094.jpg",
+            "Women intechRoadshow.jpg",
             "IMG_7301-EDIT.jpg"
         ],
         notes: [
@@ -27,10 +26,12 @@ const eventsData = [
         date: "April 12, 2025",
         photos: 4,
         images: [
+            "BuildwithAI.jpg",
             "PHOTO-2025-04-12-17-01-31.jpg",
-            "PHOTO-2025-04-12-17-16-19.jpg",
+            "PHOTO-2025-04-12-17-16-21 2.jpg",
             "PHOTO-2025-04-12-17-20-42 2.jpg",
-            "PHOTO-2025-04-12-19-56-22.jpg"
+            "PHOTO-2025-04-12-19-56-22.jpg",
+            "PHOTO-2025-04-12-19-56-24.jpg"
         ],
         notes: [
             { text: "500 Devs", color: COLORS.BLUE, rotate: -5 },
@@ -43,8 +44,11 @@ const eventsData = [
     {
         title: "Cybersecurity Day 2025",
         date: "June 15, 2025",
-        photos: 3,
-        images: [],
+        photos: 2,
+        images: [
+            "Cybersec.jpeg",
+            "Cybersecc.jpeg"
+        ],
         notes: [
             { text: "Security", color: COLORS.RED, rotate: -4 },
             { text: "Experts", color: COLORS.BLUE, rotate: 3 },
@@ -55,12 +59,11 @@ const eventsData = [
     {
         title: "Google I/O Extended Beirut 2025",
         date: "September 6, 2025",
-        photos: 4,
+        photos: 3,
         images: [
             "Google IO Extended Beirut 2025.jpg",
             "IMG-20250906-WA0103.jpg",
-            "Google IO Extended Beirut 2025.jpg",
-            "IMG-20250906-WA0103.jpg"
+            "Google IO Extended Beirut 20252.jpg"
         ],
         notes: [
             { text: "Hybrid", color: COLORS.YELLOW, rotate: 2 },
@@ -73,13 +76,8 @@ const eventsData = [
     {
         title: "DevFest Beirut 2025",
         date: "October 25, 2025",
-        photos: 4,
-        images: [
-            "IMG_0167(1).jpg",
-            "20251025_123835.heic",
-            "IMG_0074(1).heic",
-            "IMG_0133(1).heic"
-        ],
+        photos: 0,
+        images: [],
         notes: [
             { text: "1,100+", color: COLORS.RED, rotate: 3 },
             { text: "40 Speakers", color: COLORS.BLUE, rotate: -3 },
@@ -91,7 +89,7 @@ const eventsData = [
     {
         title: "Build with AI - MENA Series",
         date: "December 15, 2025",
-        photos: 3,
+        photos: 0,
         images: [],
         notes: [
             { text: "ZAKA", color: COLORS.GREEN, rotate: -2 },
@@ -103,7 +101,7 @@ const eventsData = [
     {
         title: "DevFest North Lebanon",
         date: "December 20, 2025",
-        photos: 4,
+        photos: 0,
         images: [],
         notes: [
             { text: "1,000!", color: COLORS.RED, rotate: 4 },
@@ -128,15 +126,6 @@ const plane = document.createElement('div');
 plane.className = 'paper-plane';
 plane.innerHTML = `<img src="plane.svg" alt="Plane">`;
 container.appendChild(plane);
-
-// 1.6 Add Sticker that slides from top
-const sticker = document.createElement('div');
-sticker.className = 'year-sticker';
-sticker.innerHTML = `
-    <img src="logo.svg" alt="GDG" class="sticker-logo">
-    <span class="sticker-text">A YEAR IN REVIEW</span>
-`;
-container.appendChild(sticker);
 
 // 2. Create Book Cover (First Page)
 const bookCover = document.createElement('div');
@@ -253,40 +242,32 @@ eventsData.forEach((event, index) => {
     const visualSection = document.createElement('div');
     visualSection.className = 'event-grid';
 
-    // --- Generate Scatter Polaroids ---
-    const photosCount = event.photos; // Use event.photos for the number of polaroids
+    // --- Generate Polaroids: 1 Big + Small ones ---
+    const actualImages = event.images ? event.images.filter(img => img) : [];
 
-    for (let i = 0; i < photosCount; i++) {
+    actualImages.forEach((imageUrl, i) => {
         const polaroid = document.createElement('div');
-        polaroid.className = 'polaroid';
-        polaroid.style.zIndex = i + 1;
+        const isBig = (i === 0); // First image is big
 
-        // Responsive Scatter: Use Percentages!
-        // Spread across 0% to 60% of width
-        // i=0 -> 0-10%, i=3 -> 50-60%
-        const maxLeft = 60;
-        const step = maxLeft / Math.max(photosCount - 1, 1);
+        polaroid.className = isBig ? 'polaroid polaroid-big' : 'polaroid polaroid-small';
 
-        const randX = (Math.random() * 10) + (i * step);
-        const randY = Math.random() * 20 + (i % 2) * 10;
-        const randRot = Math.random() * 30 - 15;
-
-        polaroid.style.left = `${randX}%`;
-        polaroid.style.top = `${randY}%`;
-        polaroid.style.transform = `rotate(${randRot}deg)`;
-        polaroid.style.zIndex = i + 1;
-
-
-
-
-        // LOGIC: Use Custom Image if provided, otherwise Random Fallback
-        let imageUrl;
-        if (event.images && event.images[i]) {
-            imageUrl = event.images[i];
+        if (isBig) {
+            // Big image: positioned left side
+            polaroid.style.left = '0%';
+            polaroid.style.top = '5%';
+            polaroid.style.transform = `rotate(${Math.random() * 6 - 3}deg)`;
+            polaroid.style.zIndex = 10;
         } else {
-            // Random Fallback
-            const randomSig = Math.floor(Math.random() * 1000);
-            imageUrl = `https://picsum.photos/seed/${randomSig}/200/200`;
+            // Small images: scattered on right side
+            const smallIndex = i - 1;
+            const randX = 55 + (smallIndex % 2) * 20 + Math.random() * 10;
+            const randY = 5 + Math.floor(smallIndex / 2) * 35 + Math.random() * 10;
+            const randRot = Math.random() * 20 - 10;
+
+            polaroid.style.left = `${randX}%`;
+            polaroid.style.top = `${randY}%`;
+            polaroid.style.transform = `rotate(${randRot}deg)`;
+            polaroid.style.zIndex = i + 1;
         }
 
         polaroid.innerHTML = `
@@ -296,7 +277,7 @@ eventsData.forEach((event, index) => {
         `;
 
         visualSection.appendChild(polaroid);
-    }
+    });
 
     content.appendChild(visualSection);
     card.appendChild(content);
@@ -380,7 +361,7 @@ let startTime = null;
 const cards = document.querySelectorAll('.event-card');
 
 cards.forEach((card, i) => {
-    card.style.top = '250px';
+    card.style.top = '50px';
 });
 
 function animate(timestamp) {
@@ -392,25 +373,6 @@ function animate(timestamp) {
 
     // Progress bar uses adjusted progress
     progressEl.style.width = `${progress * 100}%`;
-
-    // Animate sticker - slides in from top quickly after cover starts flipping
-    if (progress < 0.06) {
-        // Hidden until cover starts flipping
-        sticker.style.opacity = '0';
-        sticker.style.transform = 'translate(-50%, -100px) scale(0.95)';
-    } else if (progress < 0.12) {
-        // Slide in from top - quick and smooth
-        const slideProgress = (progress - 0.06) / 0.06; // 0 to 1
-        const stickerY = -100 + (100 * slideProgress);
-        const stickerOpacity = slideProgress;
-
-        sticker.style.opacity = stickerOpacity;
-        sticker.style.transform = `translate(-50%, ${stickerY}px) scale(0.95)`;
-    } else {
-        // Fully visible at top
-        sticker.style.opacity = '1';
-        sticker.style.transform = 'translate(-50%, 0) scale(0.95)';
-    }
 
     // Move Plane along a path - Full Screen Navigation
     const t = progress * Math.PI * 2; // Full loop
