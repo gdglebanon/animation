@@ -1180,3 +1180,85 @@ h1 {
     transform: translateX(-50%) translateY(0);
     pointer-events: auto;
 }
+
+/* Community Sticker Button */
+.community-sticker {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 15px 30px;
+    background: #fff;
+    border-radius: 20px;
+    /* Rounded rectangle */
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    margin-top: 30px;
+    position: relative;
+    transform: rotate(3deg);
+    /* Slight rotation for sticker feel */
+    transition: transform 0.3s ease;
+    border: 3px dashed #4285F4;
+    z-index: 10;
+}
+
+/* ... hover ... */
+
+/* Mobile adjustments for community sticker */
+@media (max-width: 600px) {
+    .community-sticker {
+        width: auto;
+        height: auto;
+        padding: 10px 20px;
+        margin-top: 20px;
+    }
+
+    /* ... */
+}
+
+.community-sticker:hover {
+    transform: rotate(0deg) scale(1.1);
+    box-shadow: 0 6px 15px rgba(66, 133, 244, 0.25);
+}
+
+.sticker-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-family: 'Google Sans', sans-serif;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.sticker-content span {
+    font-size: 0.8rem;
+    color: #555;
+    display: block;
+}
+
+.sticker-content strong {
+    font-size: 0.9rem;
+    color: #4285F4;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Mobile adjustments for community sticker */
+@media (max-width: 600px) {
+    .community-sticker {
+        width: 80px;
+        height: 80px;
+        margin-top: 20px;
+    }
+
+    .sticker-content span {
+        font-size: 0.7rem;
+    }
+
+    .sticker-content strong {
+        font-size: 0.75rem;
+    }
+}

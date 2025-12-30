@@ -362,7 +362,7 @@ backCover.innerHTML = `
             <div class="social-container">
                 <div class="social-links">
                     <!-- LinkedIn - Scribble Style -->
-                    <a href="#" class="social-link" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/company/gdg-coast-lebanon" target="_blank" class="social-link" aria-label="LinkedIn">
                         <svg viewBox="0 0 60 60" width="60" height="60">
                             <path d="M5 8 Q3 5 8 3 L50 5 Q55 3 55 8 L58 50 Q60 55 52 57 L8 55 Q3 58 5 52 Z"
                                   fill="none" stroke="#0077b5" stroke-width="2.5" stroke-linecap="round"/>
@@ -372,7 +372,7 @@ backCover.innerHTML = `
                     </a>
 
                     <!-- Instagram - Scribble Style -->
-                    <a href="#" class="social-link" aria-label="Instagram">
+                    <a href="https://www.instagram.com/gdgcoastlebanon" target="_blank" class="social-link" aria-label="Instagram">
                         <svg viewBox="0 0 60 60" width="60" height="60">
                             <defs>
                                 <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -389,7 +389,7 @@ backCover.innerHTML = `
                     </a>
 
                     <!-- Facebook - Scribble Style -->
-                    <a href="#" class="social-link" aria-label="Facebook">
+                    <a href="https://www.facebook.com/gdglebanon/" target="_blank" class="social-link" aria-label="Facebook">
                         <svg viewBox="0 0 60 60" width="60" height="60">
                             <path d="M8 10 Q6 6 10 6 L50 8 Q56 7 54 12 L56 48 Q58 54 52 54 L10 56 Q4 56 6 50 L4 12 Q3 8 8 10 Z"
                                   fill="none" stroke="#1877F2" stroke-width="2.5" stroke-linecap="round"/>
@@ -399,7 +399,7 @@ backCover.innerHTML = `
                     </a>
 
                     <!-- YouTube - Scribble Style -->
-                    <a href="#" class="social-link" aria-label="YouTube">
+                    <a href="https://www.youtube.com/@gdgcoastlebanon513" target="_blank" class="social-link" aria-label="YouTube">
                         <svg viewBox="0 0 60 60" width="60" height="60">
                             <path d="M10 18 Q8 16 12 16 L48 15 Q54 14 54 20 L55 40 Q56 46 50 46 L12 47 Q6 48 6 42 L5 20 Q4 16 10 18 Z"
                                   fill="none" stroke="#FF0000" stroke-width="2.5" stroke-linecap="round"/>
@@ -412,7 +412,14 @@ backCover.innerHTML = `
                     <span>@gdgcoastlebanon</span>
                     <span>@devfestlebanon</span>
                 </div>
-            </div>
+
+                <!-- Community Button -->
+                <a href="https://gdg.community.dev/gdg-coast-lebanon/" target="_blank" class="community-sticker">
+                   <div class="sticker-content">
+                        <span>Join our</span>
+                        <strong>Community</strong>
+                   </div>
+                </a>
             </div>
         </div>
     </div>
