@@ -166,26 +166,26 @@ h1 {
 
 /* Book Cover Styling */
 .book-cover {
-    background: #fef6e8;
-    /* Light beige cover */
+    background: #f1f0f0;
+    /* Light gray cover */
     background-image:
-        linear-gradient(135deg, #fff9ef 0%, #fbeedb 100%),
-        radial-gradient(circle at 20% 80%, rgba(255, 214, 165, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 238, 209, 0.2) 0%, transparent 50%);
+        linear-gradient(135deg, #f1f0f0 0%, #e8e7e7 100%),
+        radial-gradient(circle at 20% 80%, rgba(200, 200, 200, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(220, 220, 220, 0.2) 0%, transparent 50%);
     border: none;
-    border-left: 20px solid #e4d5c2;
-    /* Warm spine */
+    border-left: 20px solid #c0c0c0;
+    /* Gray spine */
     box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.2),
-        -10px 0 30px rgba(0, 0, 0, 0.15),
-        inset -5px 0 20px rgba(0, 0, 0, 0.08);
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        -10px 0 30px rgba(0, 0, 0, 0.2),
+        inset -5px 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .book-cover::before {
     left: -20px;
     width: 20px;
-    background: linear-gradient(to right, #d0bfa8, #f1e4d1);
-    /* Beige spine gradient */
+    background: linear-gradient(to right, #a0a0a0, #c0c0c0);
+    /* Gray spine gradient */
 }
 
 .book-cover-content {
@@ -386,7 +386,7 @@ h1 {
 .polaroid {
     position: absolute;
     transition: transform 0.3s ease;
-    z-index: 10;
+    z-index: 30;
     will-change: transform;
 }
 
@@ -501,7 +501,7 @@ h1 {
     bottom: 15px;
     left: 30px;
     right: 30px;
-    z-index: 10;
+    z-index: 5;
 }
 
 .page-progress-bar {
@@ -1146,6 +1146,8 @@ h1 {
     cursor: pointer;
     box-shadow: 0 12px 30px rgba(66, 133, 244, 0.3);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    align-self: center;
+    text-align: center;
 }
 
 .revisit-cta.visible {
