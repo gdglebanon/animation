@@ -7,156 +7,161 @@ const COLORS = {
 
 const eventsData = [
     {
-        title: "Google I/O Extended",
-        date: "May 15, 2025",
+        title: "GDG @ Women In Tech Roadshow",
+        date: "February 22, 2025",
         photos: 3,
         images: [
-            "logo.svg",
-            "logo.svg",
-            "logo.svg"
+            "IMG-20250222-WA0029.jpg",
+            "IMG-20250222-WA0094.jpg",
+            "IMG_7301-EDIT.jpg"
         ],
         notes: [
-            { text: "100+ Devs", color: COLORS.BLUE, rotate: -5 },
-            { text: "Live Demo", color: COLORS.RED, rotate: 5 },
-            { text: "", color: COLORS.YELLOW, rotate: 2 } // Empty note
+            { text: "Laura ✨", color: COLORS.RED, rotate: -3 },
+            { text: "Diverse", color: COLORS.BLUE, rotate: 4 },
+            { text: "100+", color: COLORS.YELLOW, rotate: -2 }
         ],
-        description: "Join us for an immersive recap of the biggest Google announcements. Deep dive into the latest in AI, Mobile, and Cloud technologies."
+        description: "Strong collaboration with Laura brought diverse audiences outside the usual developer circle. A successful reach to new communities!"
     },
     {
-        title: "Cloud Summit 2025",
-        date: "June 02, 2025",
+        title: "Build with AI 2025",
+        date: "April 12, 2025",
         photos: 4,
         images: [
-            // "path/to/cloud1.jpg",
-            // "path/to/cloud2.jpg"
+            "PHOTO-2025-04-12-17-01-31.jpg",
+            "PHOTO-2025-04-12-17-16-19.jpg",
+            "PHOTO-2025-04-12-17-20-42 2.jpg",
+            "PHOTO-2025-04-12-19-56-22.jpg"
         ],
         notes: [
-            { text: "100+ Devs", color: COLORS.BLUE, rotate: -5 },
-            { text: "Live Demo", color: COLORS.RED, rotate: 5 },
-            { text: "", color: COLORS.GREEN, rotate: 2 } // Empty green note
+            { text: "500 Devs", color: COLORS.BLUE, rotate: -5 },
+            { text: "Agentic AI", color: COLORS.GREEN, rotate: 2 },
+            { text: "Fully Booked", color: COLORS.RED, rotate: 5 },
+            { text: "Waitlist!", color: COLORS.YELLOW, rotate: 3 }
         ],
-        description: "Explore the power of Google Cloud. Hands-on labs, expert sessions, and networking with cloud architects."
+        description: "High demand conference with excellent feedback on Agentic AI workshops. Venue was fully booked with 500 attendees - capacity couldn't meet the demand!"
     },
     {
-        title: "Women Techmakers",
-        date: "June 20, 2025",
+        title: "Cybersecurity Day 2025",
+        date: "June 15, 2025",
         photos: 3,
         images: [],
         notes: [
-            { text: "Inspiring!", color: COLORS.RED, rotate: -3 },
-            { text: "Power", color: COLORS.BLUE, rotate: 4 },
-            { text: "Community", color: COLORS.YELLOW, rotate: -2 }
+            { text: "Security", color: COLORS.RED, rotate: -4 },
+            { text: "Experts", color: COLORS.BLUE, rotate: 3 },
+            { text: "New Crowd", color: COLORS.GREEN, rotate: -2 }
         ],
-        description: "Celebrating diversity in tech. Inspiring talks, leadership workshops, and community building for everyone."
+        description: "Collaboration with security experts provided deep technical value, attracting a new segment of professionals to the community."
     },
     {
-        title: "Android Workshop",
-        date: "July 10, 2025",
+        title: "Google I/O Extended Beirut 2025",
+        date: "September 6, 2025",
         photos: 4,
-        images: [],
-        notes: [
-            { text: "Kotlin <3", color: COLORS.GREEN, rotate: 2 },
-            { text: "Jetpack", color: COLORS.BLUE, rotate: -4 },
-            { text: "Mobile", color: COLORS.RED, rotate: 3 },
-            { text: "Compose", color: COLORS.YELLOW, rotate: 1 }
+        images: [
+            "Google IO Extended Beirut 2025.jpg",
+            "IMG-20250906-WA0103.jpg",
+            "Google IO Extended Beirut 2025.jpg",
+            "IMG-20250906-WA0103.jpg"
         ],
-        description: "Master Modern Android Development. From Jetpack Compose to Kotlin Coroutines, level up your mobile skills."
+        notes: [
+            { text: "Hybrid", color: COLORS.YELLOW, rotate: 2 },
+            { text: "42 Collab", color: COLORS.BLUE, rotate: -3 },
+            { text: "100 Devs", color: COLORS.GREEN, rotate: 4 },
+            { text: "Big Event", color: COLORS.RED, rotate: -1 }
+        ],
+        description: "Big hybrid event with collaboration from 42. Successfully brought together 100 participants both in-person and online."
     },
     {
-        title: "AI/ML Bootcamp",
-        date: "August 05, 2025",
-        photos: 3,
-        images: [],
-        notes: [
-            { text: "TensorFlow", color: COLORS.YELLOW, rotate: -3 },
-            { text: "Keras", color: COLORS.RED, rotate: 3 },
-            { text: "Model It", color: COLORS.BLUE, rotate: -1 }
-        ],
-        description: "A comprehensive bootcamp covering TensorFlow, Keras, and generative AI models. Build your own models from scratch."
-    },
-    {
-        title: "Web Technologies Day",
-        date: "September 12, 2025",
-        photos: 4,
-        images: [],
-        notes: [
-            { text: "PWA", color: COLORS.BLUE, rotate: 2 },
-            { text: "Chrome", color: COLORS.GREEN, rotate: -2 },
-            { text: "Speed", color: COLORS.RED, rotate: 4 },
-            { text: "WebAssembly", color: COLORS.YELLOW, rotate: -5 }
-        ],
-        description: "The future of the web is here. Learn about PWA, WebAssembly, and the latest Chrome APIs."
-    },
-    {
-        title: "DevFest 2025 Launch",
-        date: "October 01, 2025",
-        photos: 3,
-        images: [],
-        notes: [
-            { text: "Kickoff", color: COLORS.RED, rotate: -4 },
-            { text: "Swag!", color: COLORS.BLUE, rotate: 3 },
-            { text: "Big Plans", color: COLORS.GREEN, rotate: -2 }
-        ],
-        description: "Kicking off our flagship event season. Meet the team, grab swag, and prepare for the biggest developer festival."
-    },
-    {
-        title: "Hackathon: Build for Good",
+        title: "DevFest Beirut 2025",
         date: "October 25, 2025",
         photos: 4,
-        images: [],
-        notes: [
-            { text: "48 Hours", color: COLORS.YELLOW, rotate: 3 },
-            { text: "Coding", color: COLORS.RED, rotate: -3 },
-            { text: "Impact", color: COLORS.BLUE, rotate: 2 },
-            { text: "Pizza!", color: COLORS.GREEN, rotate: 5 }
+        images: [
+            "IMG_0167(1).jpg",
+            "20251025_123835.heic",
+            "IMG_0074(1).heic",
+            "IMG_0133(1).heic"
         ],
-        description: "48 hours of coding to solve real-world problems. Great prizes, food, and mentorship included."
+        notes: [
+            { text: "1,100+", color: COLORS.RED, rotate: 3 },
+            { text: "40 Speakers", color: COLORS.BLUE, rotate: -3 },
+            { text: "Biggest!", color: COLORS.YELLOW, rotate: 2 },
+            { text: "Energy", color: COLORS.GREEN, rotate: -4 }
+        ],
+        description: "The biggest event of the year! Over 1,100 attendees, 40+ speakers, and incredible community energy. The highlight of our 2025 calendar."
     },
     {
-        title: "Career Fair & Networking",
-        date: "November 15, 2025",
+        title: "Build with AI - MENA Series",
+        date: "December 15, 2025",
         photos: 3,
         images: [],
         notes: [
-            { text: "Hired!", color: COLORS.GREEN, rotate: -2 },
-            { text: "Review", color: COLORS.YELLOW, rotate: 4 },
-            { text: "Jobs", color: COLORS.BLUE, rotate: -3 }
+            { text: "ZAKA", color: COLORS.GREEN, rotate: -2 },
+            { text: "Regional", color: COLORS.BLUE, rotate: 3 },
+            { text: "MENA", color: COLORS.YELLOW, rotate: -3 }
         ],
-        description: "Connect with top tech companies in Lebanon. Portfolio reviews, mock interviews, and job opportunities."
+        description: "Great regional visibility through ZAKA collaboration. Connected local developers with the broader MENA network despite end-of-year timing challenges."
     },
     {
-        title: "End of Year Celebration",
+        title: "DevFest North Lebanon",
         date: "December 20, 2025",
         photos: 4,
         images: [],
         notes: [
-            { text: "Trivia", color: COLORS.RED, rotate: 3 },
-            { text: "Awards", color: COLORS.BLUE, rotate: -3 },
-            { text: "2026", color: COLORS.YELLOW, rotate: 2 },
-            { text: "Fun", color: COLORS.GREEN, rotate: -4 }
+            { text: "1,000!", color: COLORS.RED, rotate: 4 },
+            { text: "North LB", color: COLORS.BLUE, rotate: -2 },
+            { text: "External", color: COLORS.GREEN, rotate: 3 },
+            { text: "Expansion", color: COLORS.YELLOW, rotate: -4 }
         ],
-        description: "Wrap up an amazing year with the community. Awards, trivia night, and looking forward to 2026."
-    },
+        description: "Expanding beyond Beirut! External event bringing DevFest to North Lebanon with approximately 1,000 attendees. A milestone for regional growth."
+    }
 ];
 
 const container = document.getElementById('scroll-container');
 const progressEl = document.getElementById('progress');
 
-// 1. Create Content Wrapper
+// 1. Create Content Wrapper (Book)
 const contentWrapper = document.createElement('div');
-contentWrapper.className = 'scroll-content';
+contentWrapper.className = 'scroll-content book';
 container.appendChild(contentWrapper);
 
 // 1.5 Add Paper Plane
 const plane = document.createElement('div');
 plane.className = 'paper-plane';
 plane.innerHTML = `<img src="plane.svg" alt="Plane">`;
-// Or inline SVG if file not loaded, but I wrote the file. 
-// Just in case, let's inline for robustness if local file fetch has issues in some contexts? 
-// No, file is fine.
 container.appendChild(plane);
 
-// 2. Generate Event Cards (Scrapbook Pages)
+// 1.6 Add Sticker that slides from top
+const sticker = document.createElement('div');
+sticker.className = 'year-sticker';
+sticker.innerHTML = `
+    <img src="logo.svg" alt="GDG" class="sticker-logo">
+    <span class="sticker-text">A YEAR IN REVIEW</span>
+`;
+container.appendChild(sticker);
+
+// 2. Create Book Cover (First Page)
+const bookCover = document.createElement('div');
+bookCover.className = 'event-card book-cover';
+bookCover.style.zIndex = eventsData.length + 1;
+bookCover.innerHTML = `
+    <div class="card-shadow"></div>
+    <div class="card-content book-cover-content">
+        <div class="cover-design">
+            <img src="logo.svg" alt="GDG Logo" class="cover-logo">
+            <h1 class="cover-title">A Year in Review</h1>
+            <div class="cover-year">2025</div>
+            <p class="cover-subtitle">GDG Coast Lebanon</p>
+            <div class="google-colors-bar">
+                <span style="background: #4285F4"></span>
+                <span style="background: #EA4335"></span>
+                <span style="background: #FBBC05"></span>
+                <span style="background: #34A853"></span>
+            </div>
+        </div>
+    </div>
+`;
+contentWrapper.appendChild(bookCover);
+
+// 3. Generate Event Cards (Book Pages)
 // Store random flight paths
 const flightPaths = [];
 
@@ -188,6 +193,16 @@ eventsData.forEach((event, index) => {
     const shadow = document.createElement('div');
     shadow.className = 'card-shadow';
     card.appendChild(shadow);
+
+    // Add progress bar to page
+    const pageProgress = document.createElement('div');
+    pageProgress.className = 'page-progress';
+    pageProgress.innerHTML = `
+        <div class="page-progress-bar">
+            <div class="page-progress-fill" style="width: ${((index + 1) / eventsData.length) * 100}%"></div>
+        </div>
+    `;
+    card.appendChild(pageProgress);
 
     const content = document.createElement('div');
     content.className = 'card-content';
@@ -277,7 +292,6 @@ eventsData.forEach((event, index) => {
         polaroid.innerHTML = `
             <div class="polaroid-content">
                 <div class="polaroid-img" style="background-image: url('${imageUrl}'); background-size: cover; background-position: center;"></div>
-                <div class="polaroid-caption">Memory #${i + 1}</div>
             </div>
         `;
 
@@ -289,9 +303,79 @@ eventsData.forEach((event, index) => {
     contentWrapper.appendChild(card);
 });
 
-// 3. Animation Logic
-// 3. Animation Logic
-const DURATION = 25000; // 2.5 seconds per book * 10 books = 25s
+// 3.5. Create Back Cover (Last Page)
+const backCover = document.createElement('div');
+backCover.className = 'event-card book-cover back-cover';
+backCover.style.zIndex = 0; // Lowest z-index, appears at the end
+backCover.innerHTML = `
+    <div class="card-shadow"></div>
+    <div class="card-content book-cover-content">
+        <div class="cover-design back-design">
+            <h2 class="back-title">Stay tuned for <span style="color: #4285F4">2026!</span></h2>
+            <p class="back-subtitle">Join us on social media</p>
+
+            <div class="social-container">
+                <div class="social-links">
+                    <!-- LinkedIn - Scribble Style -->
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <svg viewBox="0 0 60 60" width="60" height="60">
+                            <path d="M5 8 Q3 5 8 3 L50 5 Q55 3 55 8 L58 50 Q60 55 52 57 L8 55 Q3 58 5 52 Z"
+                                  fill="none" stroke="#0077b5" stroke-width="2.5" stroke-linecap="round"/>
+                            <text x="30" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold"
+                                  fill="#0077b5" text-anchor="middle">in</text>
+                        </svg>
+                    </a>
+
+                    <!-- Instagram - Scribble Style -->
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg viewBox="0 0 60 60" width="60" height="60">
+                            <defs>
+                                <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#FFD521"/>
+                                    <stop offset="50%" style="stop-color:#F7552B"/>
+                                    <stop offset="100%" style="stop-color:#C13584"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M8 6 Q4 4 6 10 L5 48 Q3 54 10 54 L52 56 Q58 57 56 50 L58 10 Q59 4 52 6 Z"
+                                  fill="none" stroke="url(#igGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                            <circle cx="30" cy="30" r="10" fill="none" stroke="url(#igGrad)" stroke-width="2.5"/>
+                            <circle cx="46" cy="14" r="2.5" fill="url(#igGrad)"/>
+                        </svg>
+                    </a>
+
+                    <!-- Facebook - Scribble Style -->
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg viewBox="0 0 60 60" width="60" height="60">
+                            <path d="M8 10 Q6 6 10 6 L50 8 Q56 7 54 12 L56 48 Q58 54 52 54 L10 56 Q4 56 6 50 L4 12 Q3 8 8 10 Z"
+                                  fill="none" stroke="#1877F2" stroke-width="2.5" stroke-linecap="round"/>
+                            <text x="30" y="42" font-family="Arial, sans-serif" font-size="32" font-weight="bold"
+                                  fill="#1877F2" text-anchor="middle">f</text>
+                        </svg>
+                    </a>
+
+                    <!-- YouTube - Scribble Style -->
+                    <a href="#" class="social-link" aria-label="YouTube">
+                        <svg viewBox="0 0 60 60" width="60" height="60">
+                            <path d="M10 18 Q8 16 12 16 L48 15 Q54 14 54 20 L55 40 Q56 46 50 46 L12 47 Q6 48 6 42 L5 20 Q4 16 10 18 Z"
+                                  fill="none" stroke="#FF0000" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M25 22 L40 30 L25 38 Z" fill="#FF0000"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="handles-row">
+                    <span>@gdgcoastlebanon</span>
+                    <span>@devfestlebanon</span>
+                </div>
+            </div>
+        </div>
+    </div>
+`;
+contentWrapper.appendChild(backCover);
+
+// 4. Animation Logic
+const DURATION = 45000; // Slower animation: ~5 seconds per page * 9 pages (front + 7 events + back) = 45s
+const INITIAL_DELAY = 2000; // 2 second delay before cover starts flipping
 let startTime = null;
 const cards = document.querySelectorAll('.event-card');
 
@@ -301,22 +385,35 @@ cards.forEach((card, i) => {
 
 function animate(timestamp) {
     if (!startTime) startTime = timestamp;
-    const elapsed = timestamp - startTime;
-    const progress = Math.min(elapsed / DURATION, 1);
 
+    // Apply initial delay before animation starts
+    const adjustedElapsed = Math.max(0, timestamp - startTime - INITIAL_DELAY);
+    const progress = Math.min(adjustedElapsed / DURATION, 1);
+
+    // Progress bar uses adjusted progress
     progressEl.style.width = `${progress * 100}%`;
 
+    // Animate sticker - slides in from top quickly after cover starts flipping
+    if (progress < 0.06) {
+        // Hidden until cover starts flipping
+        sticker.style.opacity = '0';
+        sticker.style.transform = 'translate(-50%, -100px) scale(0.95)';
+    } else if (progress < 0.12) {
+        // Slide in from top - quick and smooth
+        const slideProgress = (progress - 0.06) / 0.06; // 0 to 1
+        const stickerY = -100 + (100 * slideProgress);
+        const stickerOpacity = slideProgress;
+
+        sticker.style.opacity = stickerOpacity;
+        sticker.style.transform = `translate(-50%, ${stickerY}px) scale(0.95)`;
+    } else {
+        // Fully visible at top
+        sticker.style.opacity = '1';
+        sticker.style.transform = 'translate(-50%, 0) scale(0.95)';
+    }
+
     // Move Plane along a path - Full Screen Navigation
-    // We want it to visit different corners or loop broadly.
-    // A Lissajous curve or large Sine wave works well.
-    // x = A * sin(at + delta), y = B * sin(bt)
-
-    // Scale time for the path
     const t = progress * Math.PI * 2; // Full loop
-
-    // Wide horizontal sweep (0 to innerWidth)
-    // Vertical sweep (0 to innerHeight)
-    // We offset by 50px to keep it inside roughly
     const w = window.innerWidth - 100;
     const h = window.innerHeight - 100;
 
@@ -324,23 +421,13 @@ function animate(timestamp) {
     const planeX = (w / 2) + (w / 2) * Math.sin(t * 1.5);
     const planeY = (h / 2) + (h / 2) * Math.cos(t * 2);
 
-    // Calculate angle for rotation (tangent)
-    // dx/dt = ...
-    // dy/dt = ...
-    // Approximate angle by looking slightly ahead? Or derivative.
     const dt = 0.01;
     const nextX = (w / 2) + (w / 2) * Math.sin((t + dt) * 1.5);
     const nextY = (h / 2) + (h / 2) * Math.cos((t + dt) * 2);
 
     const dx = nextX - planeX;
     const dy = nextY - planeY;
-    const angle = Math.atan2(dy, dx) * (180 / Math.PI) + 45; // +45 because icon points top-right or similar? 
-    // My SVG points Top-Right (45deg). 0deg rotation means pointing Top-Right.
-    // atan2(dy, dx) gives angle from East (0deg).
-    // If dy is positive (down), dx positive (right), angle is positive.
-    // Standard rotation: 0 is Right. 90 is Down.
-    // If the SVG arrow points "Up-Right" (towards 2 o'clock), that's -45deg relative to Up, or 45deg relative to Right?
-    // Let's assume standard rotation adjustment. +45 usually aligns a 45-degree arrow to 0.
+    const angle = Math.atan2(dy, dx) * (180 / Math.PI) + 45;
 
     plane.style.transform = `translate(${planeX}px, ${planeY}px) rotate(${angle}deg)`;
 
@@ -349,8 +436,6 @@ function animate(timestamp) {
     const currentPos = progress * totalEvents;
 
     cards.forEach((card, i) => {
-        // const path = flightPaths[i]; // Unused for book flip
-
         const floorCurrent = Math.floor(currentPos);
         const isPast = i < floorCurrent;
         const isCurrent = i === floorCurrent;
@@ -358,14 +443,10 @@ function animate(timestamp) {
         const fraction = currentPos - floorCurrent; // 0 to 1
 
         // Sticker/Photo Visibility Logic
-        // 1. Past cards (left stack) -> Active (Keep photos visible)
-        // 2. Current card (flipping) -> Active
-        // 3. Next card -> Active IF current flip > 35% (Visible Reveal)
         let shouldBeActive = false;
         if (isPast || isCurrent) {
             shouldBeActive = true;
         } else if (isNext && fraction > 0.45) {
-            // Trigger mid-flip so the user SEES the slap happen
             shouldBeActive = true;
         }
 
@@ -382,27 +463,32 @@ function animate(timestamp) {
         if (isPast) {
             // Already Flipped (Left Stack)
             zIndex = i;
-            transformStr = `perspective(1200px) rotateY(-150deg)`;
+            transformStr = `perspective(1500px) rotateY(-180deg)`;
+            card.classList.remove('flipping');
 
         } else if (isCurrent) {
             // Currently Flipping (Active / Turning)
-            const rotY = -150 * fraction;
-            transformStr = `perspective(1200px) rotateY(${rotY}deg) translateZ(${fraction * 50}px)`; // Add lift while turning
+            const rotY = -180 * fraction;
+            const liftZ = Math.sin(fraction * Math.PI) * 80;
+            const curveY = Math.sin(fraction * Math.PI) * -30;
+
+            transformStr = `perspective(1500px) rotateY(${rotY}deg) translateZ(${liftZ}px) translateY(${curveY}px)`;
             zIndex = 100;
 
+            if (!card.classList.contains('flipping')) card.classList.add('flipping');
+
             const shadow = card.querySelector('.card-shadow');
-            if (shadow) shadow.style.opacity = Math.sin(fraction * Math.PI) * 0.3;
+            if (shadow) shadow.style.opacity = Math.sin(fraction * Math.PI) * 0.4;
 
         } else {
             // Waiting Queue (Right Stack)
             const depth = i - currentPos;
+            const waitingScale = Math.max(1 - depth * 0.08, 0.7);
+            const waitingZ = -depth * 40;
+            const waitingY = depth * 3;
 
-            // "Pop" Effect
-            const waitingScale = Math.max(1 - depth * 0.1, 0.6);
-            const waitingZ = -depth * 60;
-            const waitingY = depth * 5;
-
-            transformStr = `perspective(1200px) translate3d(0, ${waitingY}px, ${waitingZ}px) scale(${waitingScale})`;
+            transformStr = `perspective(1500px) translate3d(0, ${waitingY}px, ${waitingZ}px) scale(${waitingScale})`;
+            card.classList.remove('flipping');
         }
 
         card.style.transform = transformStr;
@@ -412,13 +498,8 @@ function animate(timestamp) {
 
     if (progress < 1) {
         requestAnimationFrame(animate);
-    } else {
-        // Animation Complete
-        setTimeout(() => {
-            const closing = document.getElementById('closing-section');
-            if (closing) closing.classList.add('visible');
-        }, 1);  // Appearance delay reduced for snappier feel
     }
+    // Animation completes naturally - back cover is now visible
 }
 
 requestAnimationFrame(animate);
