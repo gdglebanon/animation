@@ -37,7 +37,8 @@ const eventsData = [
         date: "February 22, 2025",
         images: [
             "Women intechRoadshow.jpg",
-            "IMG_7301-EDIT.jpg"
+            "IMG_7301-EDIT.jpg",
+            "Women intechRoadshow.jpg"
         ],
         notes: [
             { text: "Laura ✨", color: COLORS.RED, rotate: -3 },
@@ -52,10 +53,7 @@ const eventsData = [
         images: [
             "BuildwithAI.jpg",
             "PHOTO-2025-04-12-17-01-31.jpg",
-            "PHOTO-2025-04-12-17-16-21 2.jpg",
-            "PHOTO-2025-04-12-17-20-42 2.jpg",
-            "PHOTO-2025-04-12-19-56-22.jpg",
-            "PHOTO-2025-04-12-19-56-24.jpg"
+            "PHOTO-2025-04-12-19-56-22.jpg"
         ],
         notes: [
             { text: "500 Devs", color: COLORS.BLUE, rotate: -5 },
@@ -70,7 +68,8 @@ const eventsData = [
         date: "June 15, 2025",
         images: [
             "Cybersec.jpeg",
-            "Cybersecc.jpeg"
+            "Cybersecc.jpeg",
+            "Cybersec.jpeg"
         ],
         notes: [
             { text: "Security", color: COLORS.RED, rotate: -4 },
@@ -99,9 +98,9 @@ const eventsData = [
         title: "DevFest Beirut 2025",
         date: "October 25, 2025",
         images: [
-            "Google IO Extended Beirut 2025.jpg",
-            "PHOTO-2025-04-12-17-16-21 2.jpg",
-            "IMG-20250906-WA0103.jpg"
+            "PHOTO-2025-04-12-17-20-42 2.jpg",
+            "PHOTO-2025-04-12-19-56-24.jpg",
+            "Google IO Extended Beirut 2025.jpg"
         ],
         notes: [
             { text: "1,100+", color: COLORS.RED, rotate: 3 },
@@ -116,7 +115,8 @@ const eventsData = [
         date: "December 15, 2025",
         images: [
             "zaka.jpg",
-            "zaka1.jpg"
+            "zaka1.jpg",
+            "BuildwithAI.jpg"
         ],
         notes: [
             { text: "ZAKA", color: COLORS.GREEN, rotate: -2 },
@@ -129,8 +129,9 @@ const eventsData = [
         title: "DevFest North Lebanon",
         date: "December 20, 2025",
         images: [
-            "PHOTO-2025-04-12-17-20-42 2.jpg",
-            "BuildwithAI.jpg"
+            "north.JPG",
+            "north1.jpeg",
+            "north3.jpeg"
         ],
         notes: [
             { text: "1,000!", color: COLORS.RED, rotate: 4 },
