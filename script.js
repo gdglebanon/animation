@@ -7,17 +7,20 @@ const COLORS = {
 
 const FALLBACK_IMAGES = [
     "BuildwithAI.jpg",
-    "Google IO Extended Beirut 2025.jpg",
+    "Google IO Extended Beirut 2025-pt1.jpg",
     "Google IO Extended Beirut 20252.jpg",
     "IMG-20250906-WA0103.jpg",
     "PHOTO-2025-04-12-17-20-42 2.jpg",
     "PHOTO-2025-04-12-19-56-24.jpg",
     "IMG_7301-EDIT.jpg",
     "Women intechRoadshow.jpg",
+    "IMG-20250222-WA0094.jpg",
     "Cybersec.jpeg",
     "Cybersecc.jpeg",
     "zaka.jpg",
-    "zaka1.jpg"
+    "zaka1.jpg",
+    "devfestbei2.jpeg",
+    "devfestbei3.jpeg"
 ];
 
 let fallbackIndex = 0;
@@ -38,7 +41,7 @@ const eventsData = [
         images: [
             "Women intechRoadshow.jpg",
             "IMG_7301-EDIT.jpg",
-            "Women intechRoadshow.jpg"
+            "IMG-20250222-WA0094.jpg"
         ],
         notes: [
             { text: "Laura ✨", color: COLORS.RED, rotate: -3 },
@@ -82,7 +85,7 @@ const eventsData = [
         title: "Google I/O Extended Beirut 2025",
         date: "September 6, 2025",
         images: [
-            "Google IO Extended Beirut 2025.jpg",
+            "Google IO Extended Beirut 2025-pt1.jpg",
             "IMG-20250906-WA0103.jpg",
             "Google IO Extended Beirut 20252.jpg"
         ],
@@ -98,9 +101,9 @@ const eventsData = [
         title: "DevFest Beirut 2025",
         date: "October 25, 2025",
         images: [
-            "PHOTO-2025-04-12-17-20-42 2.jpg",
-            "PHOTO-2025-04-12-19-56-24.jpg",
-            "Google IO Extended Beirut 2025.jpg"
+            "devfestbei2.jpeg",
+            "devfestbei3.jpeg",
+            "PHOTO-2025-04-12-17-20-42 2.jpg"
         ],
         notes: [
             { text: "1,100+", color: COLORS.RED, rotate: 3 },
@@ -291,9 +294,10 @@ eventsData.forEach((event, index) => {
         const angle = (Math.random() * placement.rotate * 2) - placement.rotate;
         polaroid.style.transform = `rotate(${angle}deg)`;
 
+        // Lazy load: store URL in data-src, load when card becomes active
         polaroid.innerHTML = `
             <div class="polaroid-content">
-                <div class="polaroid-img" style="background-image: url('${imageUrl}'); background-size: cover; background-position: center;"></div>
+                <div class="polaroid-img" data-src="${imageUrl}" style="background-size: cover; background-position: center;"></div>
             </div>
         `;
 
@@ -381,8 +385,24 @@ const INITIAL_DELAY = 2000; // 2 second delay before cover starts flipping
 let startTime = null;
 const cards = document.querySelectorAll('.event-card');
 
+// Lazy loading helper
+function loadCardImages(card) {
+    if (card.dataset.imagesLoaded) return;
+    const images = card.querySelectorAll('.polaroid-img[data-src]');
+    images.forEach(img => {
+        const src = img.dataset.src;
+        if (src) {
+            img.style.backgroundImage = `url('${src}')`;
+            delete img.dataset.src;
+        }
+    });
+    card.dataset.imagesLoaded = 'true';
+}
+
+// Preload first 2 cards immediately
 cards.forEach((card, i) => {
     card.style.top = '50px';
+    if (i < 2) loadCardImages(card);
 });
 
 function animate(timestamp) {
@@ -431,6 +451,13 @@ function animate(timestamp) {
             shouldBeActive = true;
         } else if (isNext && fraction > 0.45) {
             shouldBeActive = true;
+        }
+
+        // Lazy load images for current and next cards
+        if (isCurrent || isNext) {
+            loadCardImages(card);
+            // Also preload the one after next
+            if (cards[i + 2]) loadCardImages(cards[i + 2]);
         }
 
         if (shouldBeActive) {
