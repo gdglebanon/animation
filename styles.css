@@ -388,24 +388,24 @@ h1 {
 
 /* Big polaroid - main image */
 .polaroid-big {
-    width: 280px;
+    width: 300px;
 }
 
 .polaroid-big .polaroid-img {
-    height: 220px;
+    height: 240px;
 }
 
 /* Small polaroids - secondary images */
 .polaroid-small {
-    width: 120px;
+    width: 150px;
 }
 
 .polaroid-small .polaroid-content {
-    padding: 6px;
+    padding: 8px;
 }
 
 .polaroid-small .polaroid-img {
-    height: 90px;
+    height: 120px;
 }
 
 .polaroid-content {
@@ -712,23 +712,23 @@ h1 {
 
     /* Adjust Polaroids size for mobile */
     .polaroid-big {
-        width: 180px;
+        width: 220px;
     }
 
     .polaroid-big .polaroid-img {
-        height: 140px;
+        height: 170px;
     }
 
     .polaroid-small {
-        width: 80px;
+        width: 110px;
     }
 
     .polaroid-small .polaroid-content {
-        padding: 4px;
+        padding: 6px;
     }
 
     .polaroid-small .polaroid-img {
-        height: 60px;
+        height: 85px;
     }
 
     /* Paper plane smaller */
