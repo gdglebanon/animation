@@ -413,10 +413,24 @@ backCover.innerHTML = `
                     <span>@devfestlebanon</span>
                 </div>
             </div>
+            </div>
         </div>
     </div>
 `;
 contentWrapper.appendChild(backCover);
+
+// 3.6 Create Replay Button (Outside the cards to avoid clipping)
+const replayBtn = document.createElement('button');
+replayBtn.id = 'revisit-btn';
+replayBtn.className = 'revisit-btn';
+replayBtn.onclick = () => location.reload();
+replayBtn.innerHTML = `
+    <svg class="replay-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+    </svg>
+    Revisit 2025
+`;
+container.appendChild(replayBtn);
 
 // 4. Animation Logic
 const DURATION = 45000; // Slower animation: ~5 seconds per page * 9 pages (front + 7 events + back) = 45s
@@ -475,7 +489,10 @@ function animate(timestamp) {
 
     // Card Physics
     const totalEvents = cards.length;
-    const currentPos = progress * totalEvents;
+    // Stop BEFORE the last card (back cover) so it doesn't flip away.
+    // cards.length - 1 means we go from 0 to 8 (if 9 cards).
+    // The last card (index 8) will be the "current" at the very end.
+    const currentPos = progress * (totalEvents - 1);
 
     cards.forEach((card, i) => {
         const floorCurrent = Math.floor(currentPos);
@@ -547,8 +564,14 @@ function animate(timestamp) {
 
     if (progress < 1) {
         requestAnimationFrame(animate);
+    } else {
+        // Animation Complete
+        // Show Revisit Button after 2 seconds
+        setTimeout(() => {
+            const btn = document.getElementById('revisit-btn');
+            if (btn) btn.classList.add('visible');
+        }, 2000);
     }
-    // Animation completes naturally - back cover is now visible
 }
 
 requestAnimationFrame(animate);

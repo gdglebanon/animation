@@ -1130,3 +1130,53 @@ h1 {
     height: 100%;
     padding: 20px;
 }
+
+/* Revisit Button */
+.revisit-btn {
+    position: absolute;
+    bottom: -80px;
+    /* Position under the card */
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 30px;
+    background-color: var(--google-blue);
+    color: white;
+    font-family: var(--body-font);
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: all 0.5s ease;
+    pointer-events: none;
+    /* Prevent clicks when hidden */
+    z-index: 200;
+    /* Ensure it's on top */
+}
+
+.replay-icon {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+.revisit-btn:hover {
+    background-color: #3367d6;
+    /* Darker blue */
+    transform: translateX(-50%) translateY(-2px);
+    /* Maintain centering + hover effect */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.revisit-btn.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
