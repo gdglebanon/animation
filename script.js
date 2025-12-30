@@ -192,6 +192,24 @@ const eventsData = [
 
 const container = document.getElementById('scroll-container');
 const progressEl = document.getElementById('progress');
+const stageEl = document.querySelector('.stage');
+
+const revisitBtn = document.createElement('button');
+revisitBtn.className = 'revisit-cta';
+revisitBtn.textContent = 'Revisit the 2025 Recap';
+stageEl.appendChild(revisitBtn);
+revisitBtn.addEventListener('click', () => {
+    revisitBtn.classList.remove('visible');
+    ctaShown = false;
+    startTime = null;
+    progressEl.style.width = '0%';
+    cards.forEach(card => {
+        card.classList.remove('active', 'flipping');
+        card.style.transform = '';
+        card.style.opacity = '1';
+    });
+    requestAnimationFrame(animate);
+});
 
 // 1. Create Content Wrapper (Book)
 const contentWrapper = document.createElement('div');
@@ -422,6 +440,7 @@ contentWrapper.appendChild(backCover);
 const DURATION = 45000; // Slower animation: ~5 seconds per page * 9 pages (front + 7 events + back) = 45s
 const INITIAL_DELAY = 2000; // 2 second delay before cover starts flipping
 let startTime = null;
+let ctaShown = false;
 const cards = document.querySelectorAll('.event-card');
 
 // Lazy loading helper
@@ -547,8 +566,10 @@ function animate(timestamp) {
 
     if (progress < 1) {
         requestAnimationFrame(animate);
+    } else if (!ctaShown) {
+        ctaShown = true;
+        revisitBtn.classList.add('visible');
     }
-    // Animation completes naturally - back cover is now visible
 }
 
 requestAnimationFrame(animate);

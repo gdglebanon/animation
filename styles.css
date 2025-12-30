@@ -1130,3 +1130,36 @@ h1 {
     height: 100%;
     padding: 20px;
 }
+
+.revisit-cta {
+    display: none;
+    margin: 30px auto 60px auto;
+    padding: 14px 28px;
+    background: linear-gradient(90deg, #4285F4, #34A853);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    font-family: 'Google Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(66, 133, 244, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.revisit-cta.visible {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.revisit-cta.visible::after {
+    content: '↻';
+    font-size: 1.1rem;
+}
+
+.revisit-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(52, 168, 83, 0.35);
+}
