@@ -50,32 +50,45 @@ function getPolaroidLayout(cardIndex, count) {
         return polaroidLayoutCache.get(cardIndex);
     }
 
-    const baseLayout = [
+    const template = [
         {
             className: 'polaroid polaroid-big',
-            left: `${randomBetween(2, 22).toFixed(2)}%`,
-            top: `${randomBetween(4, 18).toFixed(2)}%`,
-            rotate: randomBetween(-6, 6)
+            baseLeft: 5,
+            baseTop: 8,
+            jitterX: 3,
+            jitterY: 3,
+            rotateRange: 4
         },
         {
             className: 'polaroid polaroid-small',
-            left: `${randomBetween(54, 74).toFixed(2)}%`,
-            top: `${randomBetween(6, 32).toFixed(2)}%`,
-            rotate: randomBetween(-14, 14)
+            baseLeft: 64,
+            baseTop: 12,
+            jitterX: 4,
+            jitterY: 5,
+            rotateRange: 6
         },
         {
             className: 'polaroid polaroid-small',
-            left: `${randomBetween(48, 78).toFixed(2)}%`,
-            top: `${randomBetween(44, 72).toFixed(2)}%`,
-            rotate: randomBetween(-12, 12)
+            baseLeft: 58,
+            baseTop: 58,
+            jitterX: 5,
+            jitterY: 5,
+            rotateRange: 6
         }
     ];
 
-    const layout = Array.from({ length: count }, (_, i) => baseLayout[i] || {
-        className: 'polaroid polaroid-small',
-        left: `${randomBetween(45, 80).toFixed(2)}%`,
-        top: `${randomBetween(30, 75).toFixed(2)}%`,
-        rotate: randomBetween(-10, 10)
+    const layout = Array.from({ length: count }, (_, i) => {
+        const slot = template[i] || template[template.length - 1];
+        const left = slot.baseLeft + randomBetween(-slot.jitterX, slot.jitterX);
+        const top = slot.baseTop + randomBetween(-slot.jitterY, slot.jitterY);
+        const rotate = randomBetween(-slot.rotateRange, slot.rotateRange);
+
+        return {
+            className: slot.className,
+            left: `${left}%`,
+            top: `${top}%`,
+            rotate
+        };
     });
 
     polaroidLayoutCache.set(cardIndex, layout);
