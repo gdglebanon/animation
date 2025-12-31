@@ -468,6 +468,19 @@ pauseBtn.innerHTML = `
 `;
 container.appendChild(pauseBtn);
 
+// 3.8 Create Replay Button (same style as pause)
+const replayBtn = document.createElement('button');
+replayBtn.id = 'replay-btn';
+replayBtn.className = 'pause-btn';
+replayBtn.style.display = 'none';
+replayBtn.innerHTML = `
+    <svg class="replay-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+    </svg>
+`;
+replayBtn.onclick = () => location.reload();
+container.appendChild(replayBtn);
+
 // 4. Animation Logic
 const DURATION = 45000; // Slower animation: ~5 seconds per page * 9 pages (front + 7 events + back) = 45s
 const INITIAL_DELAY = 2000; // 2 second delay before cover starts flipping
@@ -653,16 +666,9 @@ function animate(timestamp) {
         // Animation Complete
         animationId = null;
 
-        // Hide pause button
+        // Hide pause button and show replay button
         pauseBtn.style.display = 'none';
-
-        // Show Revisit Button after 2 seconds
-        if (!document.getElementById('revisit-btn').classList.contains('visible')) {
-            setTimeout(() => {
-                const btn = document.getElementById('revisit-btn');
-                if (btn) btn.classList.add('visible');
-            }, 2000);
-        }
+        replayBtn.style.display = 'flex';
     }
 }
 

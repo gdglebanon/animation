@@ -398,8 +398,9 @@ h1 {
 /* Gallery Item - Each photo wrapper */
 .gallery-item {
     position: relative;
-    width: 100%;
+    width: fit-content;
     box-sizing: border-box;
+    justify-self: start;
 }
 
 /* Main (large) image - spans 2 rows on left */
@@ -419,16 +420,16 @@ h1 {
     grid-row: 2;
 }
 
-/* White polaroid frame */
+/* White polaroid frame - fits exactly around image */
 .polaroid-frame {
     background: white;
-    padding: 10px;
-    padding-bottom: 14px;
+    padding: 8px;
+    padding-bottom: 8px;
     border-radius: 3px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border: 1px solid #ddd;
     box-sizing: border-box;
-    width: 100%;
+    width: fit-content;
     height: auto;
     overflow: visible;
     transform-origin: center;
@@ -659,8 +660,7 @@ h1 {
     }
 
     .polaroid-frame {
-        padding: 8px;
-        padding-bottom: 10px;
+        padding: 7px;
     }
 
     .gallery-main .polaroid-frame {
@@ -828,8 +828,7 @@ h1 {
     }
 
     .polaroid-frame {
-        padding: 7px;
-        padding-bottom: 9px;
+        padding: 6px;
     }
 
     .gallery-main .polaroid-frame {
@@ -945,8 +944,7 @@ h1 {
     }
 
     .polaroid-frame {
-        padding: 6px;
-        padding-bottom: 8px;
+        padding: 5px;
     }
 
     .gallery-main .polaroid-frame {
@@ -1086,8 +1084,7 @@ h1 {
     }
 
     .polaroid-frame {
-        padding: 5px;
-        padding-bottom: 6px;
+        padding: 4px;
     }
 
     .gallery-main .polaroid-frame {
