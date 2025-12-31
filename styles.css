@@ -1182,7 +1182,7 @@ h1 {
     bottom: 30px;
     right: 30px;
 
-    display: flex;
+    display: none; /* HIDDEN FOR NOW */
     align-items: center;
     justify-content: center;
 
