@@ -121,13 +121,13 @@ h1 {
         -8px 0 20px -5px rgba(0, 0, 0, 0.3),
         inset -3px 0 10px rgba(0, 0, 0, 0.1);
     /* Book spine shadow + inner shadow for depth */
-    padding: 40px;
+    padding: 30px;
     transform-origin: left center;
     /* Hinge on the left (spine) */
     position: absolute;
     width: 100%;
-    height: 600px;
-    /* Taller book page */
+    height: 580px;
+    /* Adjusted for new gallery layout */
     box-sizing: border-box;
     backface-visibility: hidden;
     transform-style: preserve-3d;
@@ -135,7 +135,8 @@ h1 {
     border-left: 15px solid #f8f8f8;
     /* Visible spine/binding */
     will-change: transform, opacity;
-    /* contain: layout style paint; Removed to allow Revisit button to hang out */
+    /* contain removed previously to allow revisit button float */
+    overflow: hidden;
 }
 
 /* Book spine effect - visible edge */
@@ -331,9 +332,10 @@ h1 {
 
 /* Typography & Layout */
 .text-section {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     position: relative;
-    flex-grow: 1;
+    flex-shrink: 0;
+    z-index: 2; /* Above gallery */
 }
 
 .event-card h2 {
@@ -373,96 +375,112 @@ h1 {
     width: 80%;
 }
 
-/* Collage Grid */
+/* ========================================
+   CLEAN IMAGE GALLERY LAYOUT
+   ======================================== */
+
+/* Gallery Container - CSS Grid Layout */
 .event-grid {
-    position: relative;
-    min-height: 420px;
-    height: clamp(360px, 45vw, 520px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 12px;
     width: 100%;
+    max-width: 100%;
+    margin-top: 15px;
+    margin-bottom: 50px; /* Space above progress bar */
+    padding: 0;
+    box-sizing: border-box;
+    z-index: 1; /* Below progress bar */
 }
 
-/* POLAROID STYLE */
-.polaroid {
-    position: absolute;
-    transition: transform 0.3s ease;
-    z-index: 30;
-    will-change: transform;
+/* Gallery Item - Each photo wrapper */
+.gallery-item {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Big polaroid - main image */
-.polaroid-big {
-    width: 300px;
+/* Main (large) image - spans 2 rows on left */
+.gallery-main {
+    grid-column: 1;
+    grid-row: 1 / 3;
 }
 
-.polaroid-big .polaroid-img {
-    height: 240px;
+/* Secondary (small) images - stack on right */
+.gallery-secondary:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
 }
 
-/* Small polaroids - secondary images */
-.polaroid-small {
-    width: 150px;
+.gallery-secondary:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
 }
 
-.polaroid-small .polaroid-content {
-    padding: 8px;
-}
-
-.polaroid-small .polaroid-img {
-    height: 120px;
-}
-
-.polaroid-content {
+/* White polaroid frame */
+.polaroid-frame {
     background: white;
     padding: 10px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-    border: 1px solid #ccc;
-    opacity: 0;
-    /* Hidden initially, revealed by animation */
-    transform-origin: center;
-}
-
-.polaroid-img {
+    padding-bottom: 12px;
+    border-radius: 4px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    border: 1px solid #ddd;
+    box-sizing: border-box;
     width: 100%;
-    height: 140px;
-    background-color: #eee;
-    object-fit: cover;
-    border: 1px solid #eee;
+    height: 100%;
+    overflow: hidden;
 }
 
-/* Animate the WHOLE polaroid content (Frame + Image) */
-.event-card.active .polaroid-content {
+/* Actual photo */
+.polaroid-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 2px;
+    background-color: #f5f5f5;
+}
+
+/* Main image sizing */
+.gallery-main .polaroid-photo {
+    aspect-ratio: 4 / 3;
+    min-height: 200px;
+    max-height: 280px;
+}
+
+/* Secondary image sizing */
+.gallery-secondary .polaroid-photo {
+    aspect-ratio: 4 / 3;
+    min-height: 90px;
+    max-height: 130px;
+}
+
+/* Animate the gallery items when card becomes active */
+.event-card.active .polaroid-frame {
     animation: imagePop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 /* "Sticker Slap" Animation - Scale Only, No Opacity Fading */
 @keyframes imagePop {
     0% {
-        transform: scale(3) rotate(15deg) translateZ(200px);
-        /* Start BIG and CLOSER */
-        opacity: 0;
-        /* Start invisible */
-    }
-
-    10% {
-        opacity: 1;
-        /* Fade in VERY fast during the slap down */
+        transform: scale(1.2) rotate(5deg) translateZ(50px);
+        /* Start slightly bigger */
     }
 
     40% {
-        transform: scale(0.9) rotate(-5deg) translateZ(0);
+        transform: scale(0.95) rotate(-2deg) translateZ(0);
         /* Slam down to surface */
-        opacity: 1;
     }
 
     70% {
-        transform: scale(1.05) rotate(2deg) translateZ(10px);
+        transform: scale(1.02) rotate(1deg) translateZ(5px);
         /* Bounce slightly up */
     }
 
     100% {
         transform: scale(1) rotate(0deg) translateZ(0);
         /* Settle */
-        opacity: 1;
     }
 }
 
@@ -500,7 +518,7 @@ h1 {
     bottom: 15px;
     left: 30px;
     right: 30px;
-    z-index: 5;
+    z-index: 10; /* Above gallery images */
 }
 
 .page-progress-bar {
@@ -615,31 +633,18 @@ h1 {
 
 @media (max-width: 800px) {
     .event-grid {
-        min-height: unset;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
+        gap: 10px;
+        margin-bottom: 40px;
     }
 
-    .polaroid {
-        position: relative !important;
-        left: auto !important;
-        top: auto !important;
-        transform: none !important;
-        width: min(90%, 260px) !important;
-        margin: 5px auto;
+    .gallery-main .polaroid-photo {
+        min-height: 180px;
+        max-height: 240px;
     }
 
-    .polaroid-big {
-        width: min(95%, 300px) !important;
-    }
-
-    .polaroid-big .polaroid-img,
-    .polaroid-small .polaroid-img {
-        height: auto;
-        aspect-ratio: 4 / 3;
+    .gallery-secondary .polaroid-photo {
+        min-height: 80px;
+        max-height: 110px;
     }
 }
 
@@ -679,7 +684,8 @@ h1 {
     }
 
     .event-card {
-        height: 500px;
+        height: auto;
+        min-height: 500px;
         padding: 15px;
     }
 
@@ -787,73 +793,63 @@ h1 {
         padding: 2px;
     }
 
-    /* Mobile image grid - row layout */
+    /* Mobile image grid */
     .event-grid {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
         gap: 8px;
-        min-height: auto;
-        flex: 1;
-        padding-bottom: 25px;
+        margin-bottom: 35px;
     }
 
-    /* Reset all polaroid positioning for mobile */
-    .polaroid {
-        position: relative !important;
-        left: auto !important;
-        top: auto !important;
-        transform: rotate(0deg) !important;
+    .gallery-main .polaroid-photo {
+        min-height: 160px;
+        max-height: 200px;
     }
 
-    .polaroid-big {
-        width: 55% !important;
-        flex-shrink: 0;
+    .gallery-secondary .polaroid-photo {
+        min-height: 70px;
+        max-height: 95px;
     }
 
-    .polaroid-big .polaroid-img {
-        height: 180px;
-    }
-
-    /* Container for small polaroids */
-    .polaroid-small {
-        width: calc(45% - 8px) !important;
-    }
-
-    .polaroid-small .polaroid-content {
-        padding: 4px;
-    }
-
-    .polaroid-small .polaroid-img {
-        height: 80px;
-    }
-
-    /* Stack small polaroids vertically */
-    .polaroid-small:nth-child(2) {
-        position: absolute !important;
-        right: 0 !important;
-        left: auto !important;
-        top: 0 !important;
-        width: 40% !important;
-    }
-
-    .polaroid-small:nth-child(3) {
-        position: absolute !important;
-        right: 0 !important;
-        left: auto !important;
-        top: 95px !important;
-        width: 40% !important;
-    }
-
-    /* Make event-grid relative for absolute children */
-    .event-grid {
-        position: relative;
+    .polaroid-frame {
+        padding: 8px;
+        padding-bottom: 10px;
     }
 
     /* Paper plane smaller */
     .paper-plane {
         width: 35px;
         height: 35px;
+    }
+
+    /* Pause button mobile */
+    .pause-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .pause-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Revisit button mobile - make it visible */
+    .revisit-btn {
+        position: fixed;
+        bottom: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.95rem;
+        padding: 10px 24px;
+    }
+
+    .revisit-btn.visible {
+        transform: translateX(-50%);
+    }
+
+    .replay-icon {
+        width: 20px;
+        height: 20px;
     }
 }
 
@@ -880,7 +876,8 @@ h1 {
     }
 
     .event-card {
-        height: 420px;
+        height: auto;
+        min-height: 420px;
         padding: 12px;
     }
 
@@ -906,30 +903,25 @@ h1 {
         font-size: 0.4rem;
     }
 
-    /* Smaller polaroids for tiny screens */
-    .polaroid-big {
-        width: 52% !important;
+    /* Smaller images for tiny screens */
+    .event-grid {
+        gap: 6px;
+        margin-bottom: 30px;
     }
 
-    .polaroid-big .polaroid-img {
-        height: 140px;
+    .gallery-main .polaroid-photo {
+        min-height: 130px;
+        max-height: 160px;
     }
 
-    .polaroid-small:nth-child(2),
-    .polaroid-small:nth-child(3) {
-        width: 42% !important;
+    .gallery-secondary .polaroid-photo {
+        min-height: 55px;
+        max-height: 75px;
     }
 
-    .polaroid-small .polaroid-img {
-        height: 60px;
-    }
-
-    .polaroid-small:nth-child(3) {
-        top: 75px !important;
-    }
-
-    .polaroid-small .polaroid-content {
-        padding: 3px;
+    .polaroid-frame {
+        padding: 6px;
+        padding-bottom: 8px;
     }
 
     /* Book cover mobile */
@@ -982,6 +974,32 @@ h1 {
     .handles-row span {
         padding: 5px 10px;
     }
+
+    /* Pause button extra small */
+    .pause-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .pause-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Revisit button extra small mobile */
+    .revisit-btn {
+        position: fixed;
+        bottom: 80px;
+        font-size: 0.85rem;
+        padding: 8px 20px;
+    }
+
+    .replay-icon {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 /* Very small screens (older/smaller phones) */
@@ -995,7 +1013,8 @@ h1 {
     }
 
     .event-card {
-        height: 380px;
+        height: auto;
+        min-height: 380px;
         padding: 10px;
     }
 
@@ -1018,16 +1037,25 @@ h1 {
         font-size: 0.35rem;
     }
 
-    .polaroid-big .polaroid-img {
-        height: 110px;
+    /* Very small screens - even tinier images */
+    .event-grid {
+        gap: 5px;
+        margin-bottom: 25px;
     }
 
-    .polaroid-small .polaroid-img {
-        height: 50px;
+    .gallery-main .polaroid-photo {
+        min-height: 100px;
+        max-height: 130px;
     }
 
-    .polaroid-small:nth-child(3) {
-        top: 62px !important;
+    .gallery-secondary .polaroid-photo {
+        min-height: 45px;
+        max-height: 60px;
+    }
+
+    .polaroid-frame {
+        padding: 5px;
+        padding-bottom: 6px;
     }
 
     .cover-title {
@@ -1068,8 +1096,8 @@ h1 {
     animation: titlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-/* Animate the WHOLE polaroid content (Frame + Image) */
-.event-card.active .polaroid-content {
+/* Animate the gallery items when card becomes active */
+.event-card.active .polaroid-frame {
     animation: imagePop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
@@ -1088,7 +1116,7 @@ h1 {
 /* imagePop defined above */
 
 /* Staggering - No delay */
-.event-card.active .polaroid-content {
+.event-card.active .polaroid-frame {
     animation-delay: 0s;
 }
 
@@ -1133,6 +1161,40 @@ h1 {
     justify-content: center;
     height: 100%;
     padding: 20px;
+}
+
+/* Pause Button */
+.pause-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    background-color: var(--google-blue);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 300;
+}
+
+.pause-btn:hover {
+    background-color: #3367d6;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.pause-btn svg {
+    width: 28px;
+    height: 28px;
 }
 
 /* Revisit Button */

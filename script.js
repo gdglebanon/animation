@@ -53,27 +53,27 @@ function getPolaroidLayout(cardIndex, count) {
     const template = [
         {
             className: 'polaroid polaroid-big',
-            baseLeft: 5,
-            baseTop: 8,
-            jitterX: 3,
-            jitterY: 3,
-            rotateRange: 4
+            baseLeft: 10,
+            baseTop: 15,
+            jitterX: 1,
+            jitterY: 1,
+            rotateRange: 2
         },
         {
             className: 'polaroid polaroid-small',
-            baseLeft: 64,
-            baseTop: 12,
-            jitterX: 4,
-            jitterY: 5,
-            rotateRange: 6
+            baseLeft: 60,
+            baseTop: 18,
+            jitterX: 1,
+            jitterY: 2,
+            rotateRange: 2
         },
         {
             className: 'polaroid polaroid-small',
-            baseLeft: 58,
-            baseTop: 58,
-            jitterX: 5,
-            jitterY: 5,
-            rotateRange: 6
+            baseLeft: 60,
+            baseTop: 56,
+            jitterX: 1,
+            jitterY: 2,
+            rotateRange: 2
         }
     ];
 
@@ -131,9 +131,9 @@ const eventsData = [
         title: "Cybersecurity Day 2025",
         date: "June 15, 2025",
         images: [
+            "Cybersecc.jpeg",
             "Cyber1.jpg",
-            "Cyberr2.jpg",
-            "Cybersecc.jpeg"
+            "Cyberr2.jpg"
         ],
         notes: [
             { text: "CTF Winners", color: COLORS.RED, rotate: -4 },
@@ -172,7 +172,7 @@ const eventsData = [
             { text: "Epic Energy", color: COLORS.YELLOW, rotate: 2 },
             { text: "Biggest!", color: COLORS.GREEN, rotate: 4 }
         ],
-        description: "The biggest event of the year! Over 1,000 attendees. 40+ speakers, and incredible community energy. The highlight of our 2025 calendar. Connecting the Lebanese community with international speakers , sponsors and partners."
+        description: "The biggest event of the year! Over 1,100 attendees, 40+ speakers, and incredible community energy—connecting the Lebanese community with international speakers, sponsors, and partners as the highlight of our 2025 calendar."
     },
     {
         title: "Build with AI - MENA Series",
@@ -187,7 +187,7 @@ const eventsData = [
             { text: "Google x ZAKA", color: COLORS.BLUE, rotate: 3 },
             { text: "Hands-on", color: COLORS.YELLOW, rotate: -3 }
         ],
-        description: "Empowering the MENA Developer Network: Driving impactful collaboration through a strategic partnership between Google for Developers MENA and ZAKA. Together, we are building the future of Generative AI with hands-on mastery of Google AI and Vertex AI."
+        description: "Empowering the MENA developer network through a strategic Google for Developers MENA and ZAKA partnership—hands-on mastery of Google AI and Vertex AI that connected builders with the broader regional community."
     },
     {
         title: "DevFest North Lebanon",
@@ -341,18 +341,18 @@ eventsData.forEach((event, index) => {
 
     imagesForCard.forEach((imageUrl, i) => {
         const polaroid = document.createElement('div');
-        const placement = layout[i] || layout[layout.length - 1];
 
-        polaroid.className = placement.className;
-        polaroid.style.left = placement.left;
-        polaroid.style.top = placement.top;
-        polaroid.style.zIndex = placement.className.includes('big') ? 10 : 5 + i;
-        polaroid.style.transform = `rotate(${placement.rotate}deg)`;
+        // Simple class-based approach - first image is big, rest are small
+        if (i === 0) {
+            polaroid.className = 'gallery-item gallery-main';
+        } else {
+            polaroid.className = 'gallery-item gallery-secondary';
+        }
 
         // Lazy load: store URL in data-src, load when card becomes active
         polaroid.innerHTML = `
-            <div class="polaroid-content">
-                <div class="polaroid-img" data-src="${imageUrl}" style="background-size: cover; background-position: center;"></div>
+            <div class="polaroid-frame">
+                <img class="polaroid-photo" data-src="${imageUrl}" alt="Event photo ${i + 1}">
             </div>
         `;
 
@@ -454,38 +454,101 @@ contentWrapper.appendChild(backCover);
 // 3.6 Replay logic is now inside the back cover button
 
 
+// 3.7 Create Pause/Play Button
+const pauseBtn = document.createElement('button');
+pauseBtn.id = 'pause-btn';
+pauseBtn.className = 'pause-btn';
+pauseBtn.innerHTML = `
+    <svg class="pause-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+    </svg>
+    <svg class="play-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="display: none;">
+        <path d="M8 5v14l11-7z"/>
+    </svg>
+`;
+container.appendChild(pauseBtn);
+
 // 4. Animation Logic
 const DURATION = 45000; // Slower animation: ~5 seconds per page * 9 pages (front + 7 events + back) = 45s
 const INITIAL_DELAY = 2000; // 2 second delay before cover starts flipping
 let startTime = null;
+let isPaused = false;
+let pausedTime = 0;
+let pausedAt = null;
 const cards = document.querySelectorAll('.event-card');
 
 // Lazy loading helper
 function loadCardImages(card) {
     if (card.dataset.imagesLoaded) return;
-    const images = card.querySelectorAll('.polaroid-img[data-src]');
+    const images = card.querySelectorAll('.polaroid-photo[data-src]');
     images.forEach(img => {
         const src = img.dataset.src;
         if (src) {
-            img.style.backgroundImage = `url('${src}')`;
+            img.src = src;
             delete img.dataset.src;
         }
     });
     card.dataset.imagesLoaded = 'true';
 }
 
-// Preload first 2 cards immediately
+// Load ALL card images immediately to ensure they all show
 cards.forEach((card, i) => {
     card.style.top = '50px';
-    if (i < 2) loadCardImages(card);
+    loadCardImages(card); // Load all images immediately
+});
+
+// Pause/Play button functionality
+let animationId = null;
+let lastProgress = 0;
+
+pauseBtn.addEventListener('click', () => {
+    isPaused = !isPaused;
+
+    const pauseIcon = pauseBtn.querySelector('.pause-icon');
+    const playIcon = pauseBtn.querySelector('.play-icon');
+
+    if (isPaused) {
+        pausedAt = performance.now();
+        pauseIcon.style.display = 'none';
+        playIcon.style.display = 'block';
+
+        // Cancel the animation frame to stop the animation completely
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+        }
+
+        // Snap to nearest complete page (floor to current page)
+        const totalEvents = cards.length;
+        const currentPos = lastProgress * (totalEvents - 1);
+        const floorCurrent = Math.floor(currentPos);
+
+        // Adjust pausedTime to snap to the current page
+        const targetProgress = floorCurrent / (totalEvents - 1);
+        const targetElapsed = targetProgress * DURATION;
+        const actualElapsed = lastProgress * DURATION;
+        pausedTime += (actualElapsed - targetElapsed);
+
+    } else {
+        if (pausedAt !== null) {
+            pausedTime += performance.now() - pausedAt;
+            pausedAt = null;
+        }
+        pauseIcon.style.display = 'block';
+        playIcon.style.display = 'none';
+        animationId = requestAnimationFrame(animate);
+    }
 });
 
 function animate(timestamp) {
+    if (isPaused) return;
+
     if (!startTime) startTime = timestamp;
 
-    // Apply initial delay before animation starts
-    const adjustedElapsed = Math.max(0, timestamp - startTime - INITIAL_DELAY);
+    // Apply initial delay before animation starts and account for paused time
+    const adjustedElapsed = Math.max(0, timestamp - startTime - INITIAL_DELAY - pausedTime);
     const progress = Math.min(adjustedElapsed / DURATION, 1);
+    lastProgress = progress;
 
     // Progress bar uses adjusted progress
     progressEl.style.width = `${progress * 100}%`;
@@ -585,9 +648,10 @@ function animate(timestamp) {
     });
 
     if (progress < 1) {
-        requestAnimationFrame(animate);
+        animationId = requestAnimationFrame(animate);
     } else {
         // Animation Complete
+        animationId = null;
         // Show Revisit Button after 2 seconds
         if (!document.getElementById('revisit-btn').classList.contains('visible')) {
             setTimeout(() => {
@@ -598,4 +662,49 @@ function animate(timestamp) {
     }
 }
 
-requestAnimationFrame(animate);
+animationId = requestAnimationFrame(animate);
+
+// GoatCounter Analytics: Track clicks
+document.addEventListener('DOMContentLoaded', () => {
+    // Track social media link clicks
+    document.querySelectorAll('.social-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const platform = link.getAttribute('aria-label');
+            if (window.goatcounter) {
+                window.goatcounter.count({
+                    path: 'social-' + platform.toLowerCase(),
+                    title: 'Social Click: ' + platform,
+                    event: true
+                });
+            }
+        });
+    });
+
+    // Track community button click
+    const communityBtn = document.querySelector('.community-sticker');
+    if (communityBtn) {
+        communityBtn.addEventListener('click', () => {
+            if (window.goatcounter) {
+                window.goatcounter.count({
+                    path: 'community-click',
+                    title: 'Community Button Click',
+                    event: true
+                });
+            }
+        });
+    }
+
+    // Track revisit button click
+    const revisitBtn = document.getElementById('revisit-btn');
+    if (revisitBtn) {
+        revisitBtn.addEventListener('click', () => {
+            if (window.goatcounter) {
+                window.goatcounter.count({
+                    path: 'revisit-click',
+                    title: 'Revisit Button Click',
+                    event: true
+                });
+            }
+        });
+    }
+});
