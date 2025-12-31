@@ -92,11 +92,11 @@ const eventsData = [
             "WTRS3.jpg"
         ],
         notes: [
-            { text: "Laura", color: COLORS.RED, rotate: -3 },
-            { text: "Diverse", color: COLORS.BLUE, rotate: 4 },
-            { text: "100+", color: COLORS.YELLOW, rotate: -2 }
+            { text: "Women Techmakers", color: COLORS.RED, rotate: -3 },
+            { text: "Diversity", color: COLORS.BLUE, rotate: 4 },
+            { text: "New Voices", color: COLORS.YELLOW, rotate: -2 }
         ],
-        description: "Strong collaboration with Laura brought diverse audiences outside the usual developer circle."
+        description: "We collaborated at the Women in Tech Roadshow conference, which brought diverse audiences outside the usual developer circle."
     },
     {
         title: "Build with AI 2025",
@@ -107,11 +107,12 @@ const eventsData = [
             "BuildwithAI4.jpg"
         ],
         notes: [
-            { text: "500 Devs", color: COLORS.BLUE, rotate: -5 },
+            { text: "Full House", color: COLORS.BLUE, rotate: -5 },
             { text: "Agentic AI", color: COLORS.GREEN, rotate: 2 },
-            { text: "Fully Booked", color: COLORS.RED, rotate: 5 }
+            { text: "High Demand", color: COLORS.RED, rotate: 5 },
+            { text: "500+ Attendees", color: COLORS.YELLOW, rotate: -2 }
         ],
-        description: "High demand conference with excellent feedback on Agentic AI workshops."
+        description: "High demand conference with parallel technical tracks. The venue was fully booked with 500 attendees. Capacity couldn't meet the demand!"
     },
     {
         title: "Cybersecurity Day 2025",
@@ -122,11 +123,11 @@ const eventsData = [
             "Cybersecc.jpeg"
         ],
         notes: [
-            { text: "Security", color: COLORS.RED, rotate: -4 },
-            { text: "Experts", color: COLORS.BLUE, rotate: 3 },
-            { text: "New Crowd", color: COLORS.GREEN, rotate: -2 }
+            { text: "CTF Winners", color: COLORS.RED, rotate: -4 },
+            { text: "Cyber Defense", color: COLORS.BLUE, rotate: 3 },
+            { text: "Semicolon", color: COLORS.GREEN, rotate: -2 }
         ],
-        description: "Collaboration with security experts provided deep technical value."
+        description: "We joined Semicolon Security in advocating for cyber security and celebrating the CTF winners. The applications are currently open for the next CTF round."
     },
     {
         title: "Google I/O Extended Beirut 2025",
@@ -137,11 +138,12 @@ const eventsData = [
             "gOOGLEio2.jpg"
         ],
         notes: [
-            { text: "Hybrid", color: COLORS.YELLOW, rotate: 2 },
-            { text: "42 Collab", color: COLORS.BLUE, rotate: -3 },
-            { text: "100 Devs", color: COLORS.GREEN, rotate: 4 }
+            { text: "I/O Updates", color: COLORS.YELLOW, rotate: 2 },
+            { text: "42 Beirut", color: COLORS.BLUE, rotate: -3 },
+            { text: "Hybrid Event", color: COLORS.GREEN, rotate: 4 },
+            { text: "100+ Attendees", color: COLORS.RED, rotate: 5 }
         ],
-        description: "Big hybrid event with collaboration from 42."
+        description: "Hybrid event with collaboration from 42 Beirut. Successfully brought together 100 participants both in person and online for the updates from Google I/O."
     },
     {
         title: "DevFest Beirut 2025",
@@ -152,11 +154,12 @@ const eventsData = [
             "Devfest2.jpeg"
         ],
         notes: [
-            { text: "1,100+", color: COLORS.RED, rotate: 3 },
-            { text: "40 Speakers", color: COLORS.BLUE, rotate: -3 },
-            { text: "Biggest!", color: COLORS.YELLOW, rotate: 2 }
+            { text: "1,000+ Attendees", color: COLORS.RED, rotate: 3 },
+            { text: "40+ Speakers", color: COLORS.BLUE, rotate: -3 },
+            { text: "Epic Energy", color: COLORS.YELLOW, rotate: 2 },
+            { text: "Biggest!", color: COLORS.GREEN, rotate: 4 }
         ],
-        description: "The biggest event of the year! Over 1,100 attendees."
+        description: "The biggest event of the year! Over 1,000 attendees. 40+ speakers, and incredible community energy. The highlight of our 2025 calendar. Connecting the Lebanese community with international speakers , sponsors and partners."
     },
     {
         title: "Build with AI - MENA Series",
@@ -167,11 +170,11 @@ const eventsData = [
             "zaka.jpg"
         ],
         notes: [
-            { text: "ZAKA", color: COLORS.GREEN, rotate: -2 },
-            { text: "Regional", color: COLORS.BLUE, rotate: 3 },
-            { text: "MENA", color: COLORS.YELLOW, rotate: -3 }
+            { text: "Generative AI", color: COLORS.GREEN, rotate: -2 },
+            { text: "Google x ZAKA", color: COLORS.BLUE, rotate: 3 },
+            { text: "Hands-on", color: COLORS.YELLOW, rotate: -3 }
         ],
-        description: "Great regional visibility through ZAKA collaboration."
+        description: "Empowering the MENA Developer Network: Driving impactful collaboration through a strategic partnership between Google for Developers MENA and ZAKA. Together, we are building the future of Generative AI with hands-on mastery of Google AI and Vertex AI."
     },
     {
         title: "DevFest North Lebanon",
@@ -182,11 +185,11 @@ const eventsData = [
             "north3.jpeg"
         ],
         notes: [
-            { text: "1,000!", color: COLORS.RED, rotate: 4 },
-            { text: "North LB", color: COLORS.BLUE, rotate: -2 },
-            { text: "External", color: COLORS.GREEN, rotate: 3 }
+            { text: "North Lebanon", color: COLORS.RED, rotate: 4 },
+            { text: "Expansion", color: COLORS.BLUE, rotate: -2 },
+            { text: "Regional Growth", color: COLORS.GREEN, rotate: 3 }
         ],
-        description: "Expanding beyond Beirut! External event bringing DevFest to North Lebanon."
+        description: "Expanding beyond Beirut! DevFest to North Lebanon with approximately 1,000 attendees. A milestone for regional growth."
     }
 ];
 
@@ -420,24 +423,23 @@ backCover.innerHTML = `
                         <strong>Community</strong>
                    </div>
                 </a>
+
+                <!-- Revisit Button (Inside Book) -->
+                <button id="revisit-btn" class="revisit-btn" onclick="location.reload()">
+                    <svg class="replay-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+                    </svg>
+                    Revisit 2025
+                </button>
             </div>
         </div>
     </div>
 `;
 contentWrapper.appendChild(backCover);
 
-// 3.6 Create Replay Button (Outside the cards to avoid clipping)
-const replayBtn = document.createElement('button');
-replayBtn.id = 'revisit-btn';
-replayBtn.className = 'revisit-btn';
-replayBtn.onclick = () => location.reload();
-replayBtn.innerHTML = `
-    <svg class="replay-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-        <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
-    </svg>
-    Revisit 2025
-`;
-container.appendChild(replayBtn);
+
+// 3.6 Replay logic is now inside the back cover button
+
 
 // 4. Animation Logic
 const DURATION = 45000; // Slower animation: ~5 seconds per page * 9 pages (front + 7 events + back) = 45s
@@ -574,10 +576,12 @@ function animate(timestamp) {
     } else {
         // Animation Complete
         // Show Revisit Button after 2 seconds
-        setTimeout(() => {
-            const btn = document.getElementById('revisit-btn');
-            if (btn) btn.classList.add('visible');
-        }, 2000);
+        if (!document.getElementById('revisit-btn').classList.contains('visible')) {
+            setTimeout(() => {
+                const btn = document.getElementById('revisit-btn');
+                if (btn) btn.classList.add('visible');
+            }, 2000);
+        }
     }
 }
 
