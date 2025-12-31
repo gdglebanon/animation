@@ -187,7 +187,7 @@ const eventsData = [
             { text: "Google x ZAKA", color: COLORS.BLUE, rotate: 3 },
             { text: "Hands-on", color: COLORS.YELLOW, rotate: -3 }
         ],
-        description: "Empowering the MENA developer network through a strategic Google for Developers MENA and ZAKA partnership—hands-on mastery of Google AI and Vertex AI that connected builders with the broader regional community."
+        description: "Empowering the MENA developer network through a strategic Google for Developers MENA and ZAKA partnership with hands-on mastery of Google AI and Vertex AI that connected builders with the broader regional community."
     },
     {
         title: "DevFest North Lebanon",
@@ -349,10 +349,16 @@ eventsData.forEach((event, index) => {
             polaroid.className = 'gallery-item gallery-secondary';
         }
 
+        // Special rotation for ZAKA AI second image (Build with AI - MENA Series, event index 5)
+        let imageRotation = '';
+        if (index === 5 && i === 1) {
+            imageRotation = 'style="transform: rotate(90deg);"';
+        }
+
         // Lazy load: store URL in data-src, load when card becomes active
         polaroid.innerHTML = `
             <div class="polaroid-frame">
-                <img class="polaroid-photo" data-src="${imageUrl}" alt="Event photo ${i + 1}">
+                <img class="polaroid-photo" data-src="${imageUrl}" alt="Event photo ${i + 1}" ${imageRotation}>
             </div>
         `;
 

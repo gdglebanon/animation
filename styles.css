@@ -424,37 +424,36 @@ h1 {
 .polaroid-frame {
     background: white;
     padding: 8px;
-    padding-bottom: 8px;
     border-radius: 3px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border: 1px solid #ddd;
     box-sizing: border-box;
     width: fit-content;
-    height: auto;
-    overflow: visible;
+    height: fit-content;
+    overflow: hidden;
     transform-origin: center;
+    display: inline-block;
 }
 
 /* Actual photo */
 .polaroid-photo {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
     display: block;
+    object-fit: cover;
     border-radius: 2px;
     background-color: #f5f5f5;
+    width: auto;
+    height: auto;
 }
 
 /* Main image sizing - bigger and more prominent */
 .gallery-main .polaroid-frame {
     transform: rotate(-1deg);
-    max-height: 230px;
 }
 
 .gallery-main .polaroid-photo {
+    width: auto;
+    height: 200px;
     max-width: 100%;
-    max-height: 200px;
-    aspect-ratio: 4 / 3;
 }
 
 /* Secondary images - smaller with varied rotation */
@@ -466,14 +465,10 @@ h1 {
     transform: rotate(-2deg);
 }
 
-.gallery-secondary .polaroid-frame {
-    max-height: 110px;
-}
-
 .gallery-secondary .polaroid-photo {
+    width: auto;
+    height: 88px;
     max-width: 100%;
-    max-height: 88px;
-    aspect-ratio: 4 / 3;
 }
 
 /* Animate the gallery items when card becomes active */
@@ -663,20 +658,12 @@ h1 {
         padding: 7px;
     }
 
-    .gallery-main .polaroid-frame {
-        max-height: 220px;
-    }
-
     .gallery-main .polaroid-photo {
-        max-height: 190px;
-    }
-
-    .gallery-secondary .polaroid-frame {
-        max-height: 105px;
+        height: 190px;
     }
 
     .gallery-secondary .polaroid-photo {
-        max-height: 80px;
+        height: 80px;
     }
 }
 
@@ -831,20 +818,12 @@ h1 {
         padding: 6px;
     }
 
-    .gallery-main .polaroid-frame {
-        max-height: 200px;
-    }
-
     .gallery-main .polaroid-photo {
-        max-height: 170px;
-    }
-
-    .gallery-secondary .polaroid-frame {
-        max-height: 100px;
+        height: 170px;
     }
 
     .gallery-secondary .polaroid-photo {
-        max-height: 75px;
+        height: 75px;
     }
 
     .event-card {
@@ -947,20 +926,12 @@ h1 {
         padding: 5px;
     }
 
-    .gallery-main .polaroid-frame {
-        max-height: 165px;
-    }
-
     .gallery-main .polaroid-photo {
-        max-height: 140px;
-    }
-
-    .gallery-secondary .polaroid-frame {
-        max-height: 80px;
+        height: 140px;
     }
 
     .gallery-secondary .polaroid-photo {
-        max-height: 60px;
+        height: 60px;
     }
 
     .event-card {
@@ -1087,20 +1058,12 @@ h1 {
         padding: 4px;
     }
 
-    .gallery-main .polaroid-frame {
-        max-height: 135px;
-    }
-
     .gallery-main .polaroid-photo {
-        max-height: 115px;
-    }
-
-    .gallery-secondary .polaroid-frame {
-        max-height: 68px;
+        height: 115px;
     }
 
     .gallery-secondary .polaroid-photo {
-        max-height: 50px;
+        height: 50px;
     }
 
     .event-card {
