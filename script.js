@@ -172,7 +172,7 @@ const eventsData = [
             { text: "Epic Energy", color: COLORS.YELLOW, rotate: 2 },
             { text: "Biggest!", color: COLORS.GREEN, rotate: 4 }
         ],
-        description: "The biggest event of the year! Over 1,100 attendees, 40+ speakers, and incredible community energy—connecting the Lebanese community with international speakers, sponsors, and partners as the highlight of our 2025 calendar."
+        description: "The biggest event of the year! Over 1,100 attendees, 40+ speakers, and incredible community energy connecting the Lebanese community with international speakers, sponsors, and partners as the highlight of our 2025 calendar."
     },
     {
         title: "Build with AI - MENA Series",
@@ -652,6 +652,10 @@ function animate(timestamp) {
     } else {
         // Animation Complete
         animationId = null;
+
+        // Hide pause button
+        pauseBtn.style.display = 'none';
+
         // Show Revisit Button after 2 seconds
         if (!document.getElementById('revisit-btn').classList.contains('visible')) {
             setTimeout(() => {

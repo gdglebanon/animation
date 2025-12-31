@@ -384,15 +384,15 @@ h1 {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     grid-template-rows: auto auto;
-    gap: 10px;
+    gap: 8px;
     width: 100%;
     max-width: 100%;
-    margin-top: 10px;
-    margin-bottom: 50px; /* Space above progress bar */
+    margin-top: 8px;
+    margin-bottom: 55px; /* More space above progress bar */
     padding: 0;
     box-sizing: border-box;
     z-index: 1; /* Below progress bar */
-    max-height: 280px; /* Limit total height */
+    max-height: 250px; /* Smaller limit */
 }
 
 /* Gallery Item - Each photo wrapper */
@@ -447,12 +447,12 @@ h1 {
 /* Main image sizing - bigger and more prominent */
 .gallery-main .polaroid-frame {
     transform: rotate(-1deg);
-    max-height: 260px;
+    max-height: 230px;
 }
 
 .gallery-main .polaroid-photo {
     max-width: 100%;
-    max-height: 230px;
+    max-height: 200px;
     aspect-ratio: 4 / 3;
 }
 
@@ -466,12 +466,12 @@ h1 {
 }
 
 .gallery-secondary .polaroid-frame {
-    max-height: 125px;
+    max-height: 110px;
 }
 
 .gallery-secondary .polaroid-photo {
     max-width: 100%;
-    max-height: 100px;
+    max-height: 88px;
     aspect-ratio: 4 / 3;
 }
 
@@ -654,8 +654,8 @@ h1 {
     .event-grid {
         grid-template-columns: 1.3fr 0.7fr;
         gap: 8px;
-        margin-bottom: 45px;
-        max-height: 260px;
+        margin-bottom: 50px;
+        max-height: 240px;
     }
 
     .polaroid-frame {
@@ -664,19 +664,19 @@ h1 {
     }
 
     .gallery-main .polaroid-frame {
-        max-height: 240px;
+        max-height: 220px;
     }
 
     .gallery-main .polaroid-photo {
-        max-height: 210px;
+        max-height: 190px;
     }
 
     .gallery-secondary .polaroid-frame {
-        max-height: 115px;
+        max-height: 105px;
     }
 
     .gallery-secondary .polaroid-photo {
-        max-height: 90px;
+        max-height: 80px;
     }
 }
 
@@ -822,9 +822,9 @@ h1 {
     /* Mobile image grid */
     .event-grid {
         grid-template-columns: 1.4fr 0.6fr;
-        gap: 8px;
-        margin-bottom: 40px;
-        max-height: 240px;
+        gap: 7px;
+        margin-bottom: 45px;
+        max-height: 220px;
     }
 
     .polaroid-frame {
@@ -833,19 +833,19 @@ h1 {
     }
 
     .gallery-main .polaroid-frame {
-        max-height: 220px;
+        max-height: 200px;
     }
 
     .gallery-main .polaroid-photo {
-        max-height: 190px;
+        max-height: 170px;
     }
 
     .gallery-secondary .polaroid-frame {
-        max-height: 105px;
+        max-height: 100px;
     }
 
     .gallery-secondary .polaroid-photo {
-        max-height: 80px;
+        max-height: 75px;
     }
 
     .event-card {
@@ -940,8 +940,8 @@ h1 {
     .event-grid {
         grid-template-columns: 1.5fr 0.5fr;
         gap: 6px;
-        margin-bottom: 35px;
-        max-height: 200px;
+        margin-bottom: 40px;
+        max-height: 180px;
     }
 
     .polaroid-frame {
@@ -950,19 +950,19 @@ h1 {
     }
 
     .gallery-main .polaroid-frame {
-        max-height: 180px;
+        max-height: 165px;
     }
 
     .gallery-main .polaroid-photo {
-        max-height: 155px;
+        max-height: 140px;
     }
 
     .gallery-secondary .polaroid-frame {
-        max-height: 85px;
+        max-height: 80px;
     }
 
     .gallery-secondary .polaroid-photo {
-        max-height: 65px;
+        max-height: 60px;
     }
 
     .event-card {
@@ -1081,8 +1081,8 @@ h1 {
     .event-grid {
         grid-template-columns: 1.6fr 0.4fr;
         gap: 5px;
-        margin-bottom: 30px;
-        max-height: 170px;
+        margin-bottom: 35px;
+        max-height: 150px;
     }
 
     .polaroid-frame {
@@ -1091,19 +1091,19 @@ h1 {
     }
 
     .gallery-main .polaroid-frame {
-        max-height: 150px;
+        max-height: 135px;
     }
 
     .gallery-main .polaroid-photo {
-        max-height: 130px;
+        max-height: 115px;
     }
 
     .gallery-secondary .polaroid-frame {
-        max-height: 72px;
+        max-height: 68px;
     }
 
     .gallery-secondary .polaroid-photo {
-        max-height: 55px;
+        max-height: 50px;
     }
 
     .event-card {
